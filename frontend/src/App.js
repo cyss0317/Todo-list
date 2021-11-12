@@ -19,7 +19,7 @@ const App = () => {
       const data = response.data
       setTodos(old => data)
     }
-    todos.length === 0 ? fetchTodos() : console.log(todos)
+    todos.length === 0 ? fetchTodos() : 
     setDones([])
     setProgress([])
     setUnDones([])
