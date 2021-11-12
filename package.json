@@ -8,7 +8,6 @@
     "npm": "6.x"
   },
   "scripts": {
-
     "server:debug": "nodemon --inspect app.js",
     "server": "nodemon app.js",
     "start": "node app.js",
