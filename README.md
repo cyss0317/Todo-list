@@ -1,8 +1,17 @@
-##Todo-List
+# Todo-List
 Todo-List is an web application where user can create and remove things to do and add tags for each todo. Tags can be removed by simply clicking on. It has three status available, upcoming, in progress, and done. Depending on the status of todo, user can change the status by clicking on upcoming, in progress, done buttons.
 
 In the project directory, you can run:
 ## Instruction
+
+1. Go to config folder and follow the instructions in keys_example.js in config
+2. run ```npm install``` in root folder
+3. run ```cd Frontend``` and run ```npm install```
+4. run ```cd ..``` will direct you to the root folder, and run ```npm run dev```
+
+### In case, if it doesn't work 
+1. Delete node_modules and package.json.package in root folder AND Frontend folder.
+2. Repeat the instruction.
 
 ### `npm run dev` run this command in the main root folder.
 
@@ -23,6 +32,3 @@ Change Due Date: Click on the todo's due date and change, and submit to save the
 Remove Tag: Clicking on each tag will remove the tag.
 
 Change status of todo: In "Move to:" in each todo, you could change the status of todo by clicking on buttons.
-
-
-
