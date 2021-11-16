@@ -144,6 +144,26 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
 
     }
 
+    const pastDueRendering = (status) => {
+        if( status === "upcoming"){
+            pastDue ? <p style={{ color: "red" }}>Past Due</p> : <></>
+        }
+        if(pastDue && status === "upcoming"){
+            return(
+                <p style={{ color: "red" }}>Past Due</p>
+            )
+        } 
+        else if( pastDue && status === "inProgress"){
+            return (
+                <p style={{ color: "red" }}>Past Due</p>
+            )
+        } else {
+            return(
+                <p style={{ color: "#3992EB" }}>DONE</p>
+            )
+        }
+    }
+
     
     const statusButtons = status => {
         if(status === "upcoming"){
@@ -211,10 +231,11 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
                              <button id={id} className="change-dueDate-button" style={{display:"none"}}>Click to change</button>
                         </form>
                         {
-                            pastDue && status !== "done" ? 
-                            <p style={{color: "red"}}>Past Due</p>
-                            :
-                            <p style={{ color: "#3992EB" }}>DONE</p>
+                            // (pastDue && status === "upcoming") || (pastDue && status === "inProgress") ? 
+                            // <p style={{color: "red"}}>Past Due</p>
+                            // :
+                            // <p style={{ color: "#3992EB" }}>DONE</p>
+                            pastDueRendering(status)
                         }
                     </div>
                     {
