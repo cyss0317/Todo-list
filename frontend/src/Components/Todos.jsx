@@ -53,7 +53,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         return (
             <div key={number} className="todos-container">
                 <div className="title-addButton">
-                    <h1 className="title">{title}&nbsp;&nbsp;{propTodos.length}</h1>
+                    <h1 className="title">{title}&nbsp;&nbsp;<span>{propTodos.length}</span></h1>
                     <button onClick={e => openModal(e)} className="addTodo">+ Add new {title} todo </button>
                 </div>
                 {

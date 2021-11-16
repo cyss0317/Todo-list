@@ -83,7 +83,8 @@ body{
 }
 
 .title{
-  font-size: 35px;
+  font-size: 2rem;
+  word-break: break-word;
 }
 
 .todos-container{
@@ -126,7 +127,8 @@ body{
   cursor: pointer;
   background-color: transparent;
   margin-bottom: 8px;
-
+  width: 100%;
+  word-wrap: break-word;
 
 }
 .dueDate:hover{
@@ -143,6 +145,8 @@ body{
 .description{
   font-size: 25px;
   margin: 10px 0px 15px 0px;
+  word-wrap: break-word;
+  width: 100%;
 }
 
 /* .todos-container > .todo > div > div> p{

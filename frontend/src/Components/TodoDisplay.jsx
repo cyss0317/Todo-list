@@ -89,7 +89,6 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
     const deleteTodo = (e) => {
         e.preventDefault();
         if(status === "inProgress"){
-            
             setProgress()
         }
         todoAPIUtil.deleteTodo(id)
