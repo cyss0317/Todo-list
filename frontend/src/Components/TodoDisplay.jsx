@@ -146,22 +146,21 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
 
     const pastDueRendering = (status) => {
         if( status === "upcoming"){
-            pastDue ? <p style={{ color: "red" }}>Past Due</p> : <></>
-        }
-        if(pastDue && status === "upcoming"){
             return(
-                <p style={{ color: "red" }}>Past Due</p>
+                pastDue ? <p style={{ color: "red" }}>Past Due</p> : <></>
             )
-        } 
-        else if( pastDue && status === "inProgress"){
-            return (
-                <p style={{ color: "red" }}>Past Due</p>
+        }
+        if( status === "inProgress"){
+            return(
+                pastDue ? <p style={{ color: "red" }}>Past Due</p> : <></>
             )
-        } else {
+        }
+        if( status === "done"){
             return(
                 <p style={{ color: "#3992EB" }}>DONE</p>
             )
-        }
+        } 
+
     }
 
     
