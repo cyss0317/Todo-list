@@ -3,7 +3,7 @@ import {useState, useEffect} from "react"
 import * as todoAPIUtil from "../util/todo_util"
 
 
-const TodoDisplay = ({props, propTodo, id, status, todos, setTodos, setDones, setUnDones, setProgress}) => {
+const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, todos, setTodos, setDones, setUnDones, setProgress}) => {
     const [todo, setTodo] = useState(propTodo)
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
@@ -88,6 +88,10 @@ const TodoDisplay = ({props, propTodo, id, status, todos, setTodos, setDones, se
 
     const deleteTodo = (e) => {
         e.preventDefault();
+        if(status === "inProgress"){
+            
+            setProgress()
+        }
         todoAPIUtil.deleteTodo(id)
         setTodo(old => undefined)
     }
@@ -182,7 +186,7 @@ const TodoDisplay = ({props, propTodo, id, status, todos, setTodos, setDones, se
     if(todo !== undefined){
 
         return (
-            <div className="todo" value={id} draggable="true">
+            <div className="todo" value={id}>
                 <div className="todo-sub">
                     <div >
                         <div className="description-and-X">
@@ -207,10 +211,10 @@ const TodoDisplay = ({props, propTodo, id, status, todos, setTodos, setDones, se
                              <button id={id} className="change-dueDate-button" style={{display:"none"}}>Click to change</button>
                         </form>
                         {
-                            pastDue ? 
+                            pastDue && status !== "done" ? 
                             <p style={{color: "red"}}>Past Due</p>
                             :
-                            <></>
+                            <p style={{ color: "#3992EB" }}>DONE</p>
                         }
                     </div>
                     {
