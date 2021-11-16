@@ -146,6 +146,7 @@ body{
   font-size: 25px;
   margin: 10px 0px 15px 0px;
   word-wrap: break-word;
+  /* text-overflow: ellipsis; */
   width: 100%;
 }
 
@@ -354,7 +355,7 @@ input[type="radio"] {
 }
 
 .status-buttons > button{
-background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
+  background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   font-size: 20px;
@@ -366,6 +367,10 @@ background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 9
 .status-buttons > button:hover{
   transform: scale(0.95);
   transition: 0.1s;
+}
+
+body{
+  min-width: 600px;
 }
 .status-buttons > button:active{
   transform: scale(1.05);
