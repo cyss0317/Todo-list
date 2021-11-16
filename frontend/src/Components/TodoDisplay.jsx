@@ -93,7 +93,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
             setProgress()
         }
         todoAPIUtil.deleteTodo(id)
-        setTodo(old => undefined)
+        setTodo(old => undefined) 
     }
 
 
