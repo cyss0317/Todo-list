@@ -45,7 +45,7 @@ table {
 
 
 body{
-  background: rgb(231,171,148);
+  /* background: rgb(231,171,148); */
   background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
   font-family: 'Raleway', sans-serif;
   font-weight: 900;
@@ -311,6 +311,7 @@ input.dueDate[type="date"]::-webkit-calendar-picker-indicator {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 
@@ -371,7 +372,7 @@ input[type="radio"] {
 }
 
 body{
-  /* min-width: 600px; */
+  min-width: 600px;
 }
 .status-buttons > button:active{
   transform: scale(1.05);
