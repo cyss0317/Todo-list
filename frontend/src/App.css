@@ -311,7 +311,6 @@ input.dueDate[type="date"]::-webkit-calendar-picker-indicator {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 
