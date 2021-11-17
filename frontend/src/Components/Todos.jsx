@@ -51,7 +51,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
 
     if(todos !== undefined){
         return (
-            <div key={number} className="todos-container">
+            <div  className="todos-container">
                 <div className="title-addButton">
                     <div className="title-container">
                         <h1 className="title">{title}</h1>
@@ -60,9 +60,9 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                     <button onClick={e => openModal(e)} className="addTodo">+ Add new {title} todo </button>
                 </div>
                 {
-                    propTodos.map(todo => (
+                    propTodos.map((todo, i) => (
                         <TodoDisplay setProgress={setProgress} setDone={setDones} setUndones={setUnDones} todos={todos}
-                         setTodos={setPropTodos} status={status} key={todo._id} id={todo._id} propTodo={todo} />
+                         setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} />
                     ))
                 }
                 <div onClick={e => closeModal(e)} id="modal-background" className={`modal-background-${status}`} style={{ display: "none" }}>

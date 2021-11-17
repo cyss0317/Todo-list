@@ -43,8 +43,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
 
 
             setTodo(old => newTodo) 
-            // setTodos(old =>newTodos)
-            setUnDones(old => newUndones)
+            setTodos(old =>newTodos)
+            // setUnDones(old => newUndones)
         } else if (answer && e.target.value === "In Progress") {
             newTodo =
                 {
@@ -92,8 +92,16 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
         if(status === "inProgress"){
             setProgress()
         }
+        const newTodos = todos.map(todo => {
+            if (todo.id === id) {
+
+            } else {
+                return todo
+            }
+        })
         todoAPIUtil.deleteTodo(id)
-        setTodo(old => undefined) 
+        // setTodo(old => undefined) 
+        setTodos(newTodos)
     }
 
 
