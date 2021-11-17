@@ -17,7 +17,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     const textArea = document.querySelector(`.description-input-${status}`)
     const textAreas = document.querySelectorAll(`#description-input`)
 
-
+console.log(textAreas)
     let newTodo = ({
         description: newDescription,
         dueDate: newDueDate,
@@ -36,19 +36,27 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         modal.style.display = "block"
     }
 
+    
+    const closeModal = e => {
+        textArea.value = ""
+        textArea.value = ""
+        textArea.value = ""
+        //question, why does textarea value stays the same
+        // textAreas.forEach(textarea => textarea.defaultValue = "")
+        modal.style.display = "none"
+        console.log()
+    }
+    
     const createSubmit = (e, status) => {
         e.preventDefault()
         todoAPIUtil.createTodo(newTodo)
+            .then(newTodo => console.log(newTodo))
         setPropTodos(old => [...old, newTodo])
+        closeModal()
+            .then(res => console.log(res))
         textArea.value = ""
-        textAreas.forEach(textarea => textarea.value = "")
-        modal.style.display = "none"
-    }
 
-    const closeModal = e => {
-        modal.style.display = "none"
     }
-
     if(todos !== undefined){
         return (
             <div  className="todos-container">
