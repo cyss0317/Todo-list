@@ -88,20 +88,10 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
     }
 
     const deleteTodo = (e) => {
-        e.preventDefault();
-        if(status === "inProgress"){
-            setProgress()
-        }
-        const newTodos = todos.map(todo => {
-            if (todo.id === id) {
-
-            } else {
-                return todo
-            }
-        })
-        todoAPIUtil.deleteTodo(id)
-        // setTodo(old => undefined) 
-        setTodos(newTodos)
+            e.preventDefault();
+            todoAPIUtil.deleteTodo(id)
+            setTodo(old => undefined)
+        
     }
 
 
