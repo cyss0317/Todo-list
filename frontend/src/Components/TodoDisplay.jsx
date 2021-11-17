@@ -43,7 +43,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
 
 
             setTodo(old => newTodo) 
-            setTodos(old =>newTodos)
+            // setTodos(old =>newTodos)
+            setUnDones(old => newUndones)
         } else if (answer && e.target.value === "In Progress") {
             newTodo =
                 {
