@@ -379,6 +379,10 @@ body{
   transition: 0.1s;
 }
 
+.title-container{
+  display: flex;
+  justify-content: space-around;
+}
 .title-addButton{
   display: flex;
   flex-direction: row;
