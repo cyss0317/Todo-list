@@ -79,15 +79,16 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                             <input type="date" value={newDueDate} onChange={e => setNewDueDate(e.target.value)}/>
                             <button>submit</button>
                         </form>
+
                     </div>
                 </div>
             </div>
         )
-    } else {
+    } else if (todos.length === 0) {
         return(
-        <p style={{fontSize: "3rem"}}>Loading...</p>
-        )
-    }
+            <p style={{fontSize:"2rem"}}>There is nothing in {status}</p>
+            )
+    } 
 }
 
 export default Todos

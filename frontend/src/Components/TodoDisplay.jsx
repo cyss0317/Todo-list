@@ -243,7 +243,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
         )
     } else {
         return(
-            <></>
+            <img src="https://cutewallpaper.org/21/loading-gif-transparent-background/Download-Loading-Gif-Generator-Transparent-Background-PNG-.gif" alt="" />
         )
     }
 }
