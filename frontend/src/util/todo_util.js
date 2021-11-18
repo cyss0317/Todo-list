@@ -9,6 +9,8 @@ export const updateTodo = async todo => {
     try{
         const res = await axios.put(`/api/todos/${todo.id}`, todo)
         return res
+    } catch(err){
+        alert(err)
     }
 }
 
