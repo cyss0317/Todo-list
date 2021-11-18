@@ -6,8 +6,10 @@ export const createTodo = async data => {
 }
 
 export const updateTodo = async todo => {
-    const res = await axios.put(`/api/todos/${todo.id}`, todo)
-    return res
+    try{
+        const res = await axios.put(`/api/todos/${todo.id}`, todo)
+        return res
+    }
 }
 
 export const deleteTodo = async todoId => {
