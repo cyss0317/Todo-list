@@ -48,7 +48,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         setPropTodos(old => [...old, newTodo])
         closeModal()
     }
-    if(todos !== undefined){
+    console.log(todos.length)
+    if(propTodos.length !==  0 ){
         return (
             <div  className="todos-container">
                 <div className="title-addButton">
@@ -84,7 +85,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         )
     } else {
         return(
-            <p>Loading...</p>
+        <p style={{fontSize: "3rem"}}>Loading...</p>
         )
     }
 }
