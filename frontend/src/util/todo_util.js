@@ -10,6 +10,7 @@ export const updateTodo = async todo => {
         const res = await axios.put(`/api/todos/${todo.id}`, todo)
         return res
     } catch(err){
+        alert("Something went wrong, please try again")
         alert(err)
     }
 }
