@@ -1,7 +1,10 @@
 # Todo-List
 Todo-List is an web application where user can create and remove things to do and add tags for each todo. Tags can be removed by simply clicking on. It has three status available, upcoming, in progress, and done. Depending on the status of todo, user can change the status by clicking on upcoming, in progress, done buttons.
 
-In the project directory, you can run:
+### Preview
+![](https://github.com/cyss0317/Todo-list/blob/main/frontend/src/img/Todo-list%20demo.gif)
+
+
 ## Instruction
 
 1. Go to config folder and follow the instructions in keys_example.js in config
@@ -32,3 +35,5 @@ Change Due Date: Click on the todo's due date and change, and submit to save the
 Remove Tag: Clicking on each tag will remove the tag.
 
 Change status of todo: In "Move to:" in each todo, you could change the status of todo by clicking on buttons.
+
+
