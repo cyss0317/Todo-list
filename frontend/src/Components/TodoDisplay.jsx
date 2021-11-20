@@ -102,9 +102,29 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
     let pastDue = undefined;
 
     const dueDateOnChange = (e) => {
+    
         const changeButton = document.getElementById(`${id}`);
         setNewDueDate(e.target.value);
         changeButton.style.display = "block"
+    }
+
+    const dueDateSubmit = (e) => {
+        e.preventDefault()
+        console.log("active")
+        let newTodo =
+        {
+            id: id,
+            description: todo.description,
+            dueDate: newDueDate,
+            done: todo.done,
+            inProgress: todo.inProgress,
+            tags: tags
+        }
+
+        console.log(newDueDate)
+        console.log(todo)
+        setTodo(newTodo)
+        console.log(todo)
     }
 
     const submitTag =  e => {
@@ -222,15 +242,15 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
                         <form className="tag-input" onSubmit={e => submitTag(e)}>
                             <input type="text" onChange={e => setTag(e.target.value) }  value={tag} placeholder="Add Tags to this"/>
                         </form>
-                        <form className="change-dueDates-container">
+                        <div className="change-dueDates-container">
                             <div className="due-date-hover-effect">
                                 <span>Due: </span>< input type="date" className="dueDate" onChange={e => dueDateOnChange(e)}
                                 defaultValue={newDueDate} >
                                 </input >
     
                             </div>
-                             <button id={id} className="change-dueDate-button" style={{display:"none"}}>Click to change</button>
-                        </form>
+                             <button id={id} className="change-dueDate-button" onClick={ e => dueDateSubmit(e)} style={{display:"none"}}>Click to change</button>
+                        </div>
                         {
                             // (pastDue && status === "upcoming") || (pastDue && status === "inProgress") ? 
                             // <p style={{color: "red"}}>Past Due</p>
