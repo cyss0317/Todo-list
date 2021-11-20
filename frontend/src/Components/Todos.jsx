@@ -94,7 +94,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                     <button onClick={e => openModal(e)} className="addTodo">+ Add new {title} todo </button>
                 </div>
                 <p style={{ fontSize: "1.5rem" }}>There is nothing in {status}</p>
-                {/* {
+                {
                     propTodos.map((todo, i) => (
                         <TodoDisplay setProgress={setProgress} setDone={setDones} setUndones={setUnDones} todos={todos}
                          setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} />
@@ -116,8 +116,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                             <button>submit</button>
                         </form>
 
-                    </div> */}
-                {/* </div> */}
+                    </div>
+                </div>
             </div>
             
             )
