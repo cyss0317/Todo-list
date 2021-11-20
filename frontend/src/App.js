@@ -24,6 +24,7 @@ const App = () => {
     setDones([])
     setProgress([])
     setUnDones([])
+
     todos.forEach(todo => {
       if (todo.done) {
         setDones(old => [...old, todo])
@@ -33,7 +34,6 @@ const App = () => {
         setUnDones(old => [...old, todo])
       }
     })
-    
   },[todos])
   
   return (

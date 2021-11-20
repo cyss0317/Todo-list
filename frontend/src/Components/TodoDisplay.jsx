@@ -8,7 +8,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
     const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
-
+    // console.log("tododisplay")
 
     const onClickUpdateStatus =  e => {
         e.preventDefault();
