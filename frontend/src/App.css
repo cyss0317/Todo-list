@@ -289,15 +289,19 @@ input.dueDate[type="date"]::-webkit-calendar-picker-indicator {
 
 
 .change-dueDate-button{
-  border: 1px solid rgb(231,171,148);
-  color: white;
+
   background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
-  width: 40%;
-  margin-right: 6%;
+  padding: 5px 10px 5px 10px;
   border-radius: 5px;
+  font-size: 20px;
+  border-color: #408A8480;
   cursor: pointer;
-  font-size: 12px;
+  color: white;
+  width: 95%;
+  margin-top: 5px;
+  margin-left: 2.5%;
 }
+
 
 .change-dueDates-container{
   display: flex;
@@ -434,3 +438,4 @@ body{
 	align-items: center;
 
 }
+
