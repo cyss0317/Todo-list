@@ -84,7 +84,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                 </div>
             </div>
         )
-    } else if (todos.length === 0) {
+    } else {
         return(
              <div  className="todos-container">
                 <div className="title-addButton">

@@ -42,6 +42,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
             })
             setTodo(old => newTodo) 
             setTodos(old =>newTodos)
+            console.log(newTodo)
+            console.log(newTodos)
             // setUnDones(old => newUndones)
         } else if (answer && e.target.value === "In Progress") {
             newTodo =
@@ -62,6 +64,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
             })
             setTodo(old => newTodo)
             setTodos(old => newTodos)
+            console.log(newTodo)
+            console.log(newTodos)
         } else if (answer && e.target.value === "Upcoming"){
             newTodo =
                 {
@@ -81,6 +85,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
             })
             setTodo(old => newTodo)
             setTodos(old => newTodos)
+            console.log(newTodo)
+            console.log(newTodos)
         }
             todoAPIUtil.updateTodo(newTodo)
     }
