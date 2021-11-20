@@ -40,8 +40,6 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
                     return todo
                 }
             })
-
-
             setTodo(old => newTodo) 
             setTodos(old =>newTodos)
             // setUnDones(old => newUndones)
