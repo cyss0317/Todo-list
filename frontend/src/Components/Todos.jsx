@@ -31,6 +31,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     }
 
     const openModal = e => {
+        // debugger
+        console.log("add new thing", modal)
         e.preventDefault()
         textArea.value = ""
         modal.style.display = "block"
