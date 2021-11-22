@@ -16,6 +16,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     const modal = document.querySelector(`.modal-background-${status}`)
     const textArea = document.querySelector(`.description-input-${status}`)
 
+    console.log(`${status}`)
+    window.modal = modal
 
     let newTodo = ({
         description: newDescription,
@@ -31,8 +33,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     }
 
     const openModal = e => {
-        // debugger
-        console.log("add new thing", modal)
+
+        // console.log("add new thing", modal)
         e.preventDefault()
         textArea.value = ""
         modal.style.display = "block"
