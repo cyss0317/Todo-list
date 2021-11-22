@@ -111,7 +111,6 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
 
     const dueDateSubmit = (e) => {
         e.preventDefault()
-        alert.apply)
         console.log("active")
         let newTodo =
         {
