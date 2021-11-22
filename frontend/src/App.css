@@ -439,5 +439,11 @@ body{
 
 }
 
-
-
+.tag-button:hover{
+  transform: scale(.9);
+  transition: .1s;
+}
+.tag-button:active{
+  transform: scale(1.05);
+  transition: .1s;
+}
