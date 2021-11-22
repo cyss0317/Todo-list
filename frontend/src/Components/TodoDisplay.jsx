@@ -238,9 +238,10 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
                         </div>
                         {
                             tags.map((tag, i) => (
-                                <button onClick={e => removeTag(e)} value={i} key={i}>{tag}</button>
+                                <button className="tag-button" onClick={e => removeTag(e)} value={i} key={i}>{tag}</button>
                             ))
                         }
+                        <span style={{display: "none"}} className="tag-button-hover">Click to remove this tag</span>
                         <form className="tag-input" onSubmit={e => submitTag(e)}>
                             <input type="text" onChange={e => setTag(e.target.value) }  value={tag} placeholder="Add Tags to this"/>
                         </form>
