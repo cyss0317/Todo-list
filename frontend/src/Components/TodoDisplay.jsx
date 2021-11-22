@@ -8,6 +8,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
     const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
+    const changeButton = document.getElementById(`${id}`);
     // console.log("tododisplay")
 
     const onClickUpdateStatus =  e => {
@@ -103,13 +104,14 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
 
     const dueDateOnChange = (e) => {
     
-        const changeButton = document.getElementById(`${id}`);
+
         setNewDueDate(e.target.value);
         changeButton.style.display = "block"
     }
 
     const dueDateSubmit = (e) => {
         e.preventDefault()
+        alert.apply)
         console.log("active")
         let newTodo =
         {
@@ -122,9 +124,10 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
         }
 
         console.log(newDueDate)
-        console.log(todo)
-        setTodo(newTodo)
-        console.log(todo)
+        console.log(newTodo)
+        setTodo(old => newTodo)
+        todoAPIUtil.updateTodo(newTodo)
+        changeButton.style.display = "none"
     }
 
     const submitTag =  e => {
