@@ -5,8 +5,7 @@ export const createTodo = async data => {
         const res = await axios.post('/api/todos/create', data)
         return res
     } catch(err){
-        alert("Create request wasn't succesfully done, please try again")
-        alert(err)
+        alert(`createTodo request failed, because ${err}`)
     }
 }
 
@@ -15,8 +14,7 @@ export const updateTodo = async todo => {
         const res = await axios.put(`/api/todos/${todo.id}`, todo)
         return res
     } catch(err){
-        alert("Update request wasn't successfully done, please try again")
-        alert(err)
+        alert(`updateTodo request failed, because ${err}`)
     }
 }
 
@@ -25,7 +23,7 @@ export const fetchUpcomings = async () => {
         const res = await axios.get(`/api/todos/upcomings`)
         return res
     } catch(err){
-
+        alert(`fetchUpcomings request failed, because ${err}`)
     }
 }
 
@@ -34,8 +32,7 @@ export const deleteTodo = async todoId => {
         const res = await axios.delete(`/api/todos/${todoId}`)
         return res
     } catch(err){
-        alert("Delete request wasn't successfully done, please try again")
-        alert(err)
+        alert(`deleteTodo request failed, because ${err}`)
     }
 }
 
@@ -44,8 +41,7 @@ export const getTodo = async todoId => {
         const res = await axios.get(`/api/todos/${todoId}`)
         return res
     } catch(err){
-        alert("Couldn't find the todo, please try again")
-        alert(err)
+        alert(`getTodo request failed, because ${err}`)
     }
 }
 
@@ -54,7 +50,6 @@ export const getTodos = async () => {
         const res = await axios.get(`/api/todos/`)
         return res
     } catch(err){
-        alert("Couldn't fetch todos, please try again")
-        alert(err)
+        alert(`getTodos request failed, because ${err}`)
     }
 }

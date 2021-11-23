@@ -43,11 +43,8 @@ router.post("/create", (req, res) => {
 })
 
 router.get("/upcomings", (req, res) => {
-    Todo.find()
+    Todo.find({done: false, inProgress: false})
     .then(todos => res.json(todos))
-    .then(todos => todos.filter(todo => {
-        todo.done === false && todo.inProgress === false
-    }))
     .catch(err => alert("upcoming fetch failed"))
 })
 

@@ -12,6 +12,7 @@ const App = () => {
   const [dones, setDones ] = useState([]);
   const [didFetchTodos, setDidFetchTodos]  = useState(false)
 
+  // console.log('api call', todoAPIUtil.fetchUpcomings())
 
   useEffect(()=> {
 
