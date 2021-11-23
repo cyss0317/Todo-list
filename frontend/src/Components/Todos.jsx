@@ -53,7 +53,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         closeModal()
     }
     // console.log(status)
-    if(propTodos.length !==  0 ){
+
         return (
             <div  className="todos-container">
                 <div className="title-addButton">
@@ -63,10 +63,13 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                     <button onClick={e => openModal(e)} className="addTodo">+ Add new {title} todo </button>
                 </div>
                 {
+                    propTodos.length !== 0 ?
                     propTodos.map((todo, i) => (
                         <TodoDisplay setProgress={setProgress} setDone={setDones} setUndones={setUnDones} todos={todos}
                          setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} />
                     ))
+                    :
+                    <p style={{fontSize: "1.5rem"}}>There is nothing todo in {status}</p>
                 }
                 <div onClick={e => closeModal(e)} id="modal-background" className={`modal-background-${status}`} style={{ display: "none" }}>
                     <div className="modal-child" onClick={e => e.stopPropagation()}>
@@ -88,44 +91,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                 </div>
             </div>
         )
-    } else {
-        return(
-             <div  className="todos-container">
-                <div className="title-addButton">
-                    <div className="title-container">
-                        <h1 className="title">{title}</h1>
-                    </div>
-                    <button onClick={e => openModal(e)} className="addTodo">+ Add new {title} todo </button>
-                </div>
-                <p style={{ fontSize: "1.5rem" }}>There is nothing in {status}</p>
-                {
-                    propTodos.map((todo, i) => (
-                        <TodoDisplay setProgress={setProgress} setDone={setDones} setUndones={setUnDones} todos={todos}
-                         setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} />
-                    ))
-                }
-                <div onClick={e => closeModal(e)} id="modal-background" className={`modal-background-${status}`} style={{ display: "none" }}>
-                    <div className="modal-child" onClick={e => e.stopPropagation()}>
-                        <div className="status-x-button">
-                        <div>Create {title} todos</div>
-                            <button onClick={e => closeModal(e)}id="modal-close-button" className="X-button">X</button>
-                        </div>
-                        <form className="info-section" onSubmit={(e, status) => createSubmit(e, status)}>
-                            <label htmlFor="descrition">Description</label>
-                            <textarea id="description-input" className={`description-input-${status}`} type="text" value={newDescription} 
-                                onChange={e => setDescriptionOnChange(e)}/>
-                            
-                            <label htmlFor="dueDate">Due date:  </label>
-                            <input type="date" value={newDueDate} onChange={e => setNewDueDate(e.target.value)}/>
-                            <button>submit</button>
-                        </form>
 
-                    </div>
-                </div>
-            </div>
-            
-            )
-    } 
 }
 
 export default Todos
