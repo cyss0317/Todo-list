@@ -10,6 +10,7 @@ const App = () => {
   const [unDones, setUnDones] = useState([]);
   const [progress, setProgress] = useState([]);
   const [dones, setDones ] = useState([]);
+  const [didFetchTodos, setDidFetchTodos]  = useState(false)
 
 
   useEffect(()=> {
@@ -19,7 +20,12 @@ const App = () => {
       const data = response.data
       setTodos(old => data)
     }
-    todos.length === 0 ? fetchTodos() : 
+    if( didFetchTodos ){
+      setDidFetchTodos(false)
+    }else {
+      setDidFetchTodos(true)
+      fetchTodos()
+    }
     // fetchTodos()
     setDones([])
     setProgress([])
