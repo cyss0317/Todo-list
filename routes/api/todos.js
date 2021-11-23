@@ -39,7 +39,16 @@ router.post("/create", (req, res) => {
 
     newTodo.save()
         .then(newTodo => res.json(newTodo))
-        .catch(err => console.log(err))
+        .catch(err => alert("create todo request failed"))
+})
+
+router.get("/upcomings", (req, res) => {
+    Todo.find()
+    .then(todos => res.json(todos))
+    .then(todos => todos.filter(todo => {
+        todo.done === false && todo.inProgress === false
+    }))
+    .catch(err => alert("upcoming fetch failed"))
 })
 
 router.delete("/:id", (req, res) => {

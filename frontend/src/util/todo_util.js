@@ -20,6 +20,15 @@ export const updateTodo = async todo => {
     }
 }
 
+export const fetchUpcomings = async () => {
+    try{
+        const res = await axios.get(`/api/todos/upcomings`)
+        return res
+    } catch(err){
+
+    }
+}
+
 export const deleteTodo = async todoId => {
     try{
         const res = await axios.delete(`/api/todos/${todoId}`)
