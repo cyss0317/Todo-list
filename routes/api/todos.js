@@ -45,9 +45,14 @@ router.post("/create", (req, res) => {
 })
 //working on
 router.get("/upcomings", (req, res) => {
-    Todo.find({done: false, inProgress: false})
-    .then(todos => res.json(todos))
-    .catch(err => alert("upcoming fetch failed"))
+    // console.log("12312321",req)
+    const todos = Todo.find();
+    const upcomings = todos.filter(todo => {
+        !todo.done && !todo.inProgress
+    })
+    res.json(upcomings)
+    // .then(todos => res.json(todos))
+    // .catch(err => alert("upcoming fetch failed"))
 })
 
 router.delete("/:id", (req, res) => {
