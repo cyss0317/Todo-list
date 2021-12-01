@@ -19,6 +19,8 @@ router.get("/", (req, res) => {
         .catch( err => res.status((404).json(err)))
 })
 
+
+
 router.post("/create", (req, res) => {
 
     const { errors, isValid } = validateRegisterTodo(req.body);
@@ -41,7 +43,7 @@ router.post("/create", (req, res) => {
         .then(newTodo => res.json(newTodo))
         .catch(err => alert("create todo request failed"))
 })
-
+//working on
 router.get("/upcomings", (req, res) => {
     Todo.find({done: false, inProgress: false})
     .then(todos => res.json(todos))
