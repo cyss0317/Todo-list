@@ -44,6 +44,7 @@ router.post("/create", (req, res) => {
         .catch(err => alert("create todo request failed"))
 })
 //working on
+//question, 1
 router.get("/1/", (req, res) => {
     // console.log("12312321",req)
     // const todos = Todo.find();
