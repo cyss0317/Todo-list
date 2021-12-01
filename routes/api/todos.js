@@ -44,13 +44,6 @@ router.post("/create", (req, res) => {
         .catch(err => alert("create todo request failed"))
 })
 //working on
-
-router.get("/", (req, res) => {
-    Todo.find()
-        .then(todos => res.json(todos))
-        .catch(err => res.status((404).json(err)))
-})
-
 router.get("/1/", (req, res) => {
     // console.log("12312321",req)
     // const todos = Todo.find();
@@ -63,8 +56,14 @@ router.get("/1/", (req, res) => {
     // .catch(err => alert("upcoming fetch failed"))
 
     Todo.find()
-        .then(todos => res.json(todos))
-        .catch(err => res.status((404).json(err)))
+        .then(todos => res.json(todos.filter(todo => {
+            !todo.done && !todo.inProgress
+        })))
+        // .then(upcomings => res.json(upcomings))
+        .catch(err => res.status(404).json(err))
+    // Todo.find()
+    //     .then(todos => res.json(todos))
+    //     .catch(err => res.status((404).json(err)))
 })
 
 router.delete("/:id", (req, res) => {
