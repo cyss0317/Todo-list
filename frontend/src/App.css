@@ -399,9 +399,6 @@ body{
   margin-bottom: 10px;
 }
 #modal-background{
-  /* width: 100vw;
-  height: 100vh;
-  background-color: #22222290 */
 
   position: fixed;
   top: 0;
