@@ -34,31 +34,33 @@ router.post("/create", (req, res) => {
     .then(newTodo => res.json(newTodo))
     .catch(err => alert("create todo request failed"))
 })
-//working on
+
 router.get("/", (req, res) => {
     Todo.find()
         .then(todos => res.json(todos))
         .catch( err => res.status((404).json(err)))
 
-    // Todo.find()
-    //     .then(todos => res.json(todos.filter(todo => {
-    //         !todo.done && !todo.inProgress
-    //     })))
-    // //     // .then(upcomings => res.json(upcomings))
-    //     .catch(err => res.status(404).json(err))
 })
-//question, 1
+
 router.get("/upcoming", (req, res) => {
 
     Todo.find({done: false, inProgress: false})
         .then(todos => res.json(todos))
         .catch(err => res.status(404).json(err))
+})
 
-    //     // .then(upcomings => res.json(upcomings))
-    //     .catch(err => res.status(404).json(err))
-    // Todo.find()
-    //     .then(todos => res.json(todos))
-    //     .catch(err => res.status((404).json(err)))
+router.get("/inprogress", (req, res) => {
+
+    Todo.find({ inProgress: true })
+        .then(todos => res.json(todos))
+        .catch(err => res.status(404).json(err))
+})
+
+router.get("/done", (req, res) => {
+
+    Todo.find({ done: true})
+        .then(todos => res.json(todos))
+        .catch(err => res.status(404).json(err))
 })
 
 router.get("/:id", (req, res) => {
