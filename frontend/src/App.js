@@ -18,7 +18,7 @@ const App = () => {
 
     const fetchTodos = async () => {
       const response = await todoAPIUtil.getTodos()
-      const data = response.data
+      const data = await response.data
       setTodos(old => data)
     }
     if( didFetchTodos ){
