@@ -42,12 +42,12 @@ const App = () => {
       }
     })
   },[todos])
-
-  useMemo(() => {
-    const response = todoAPIUtil.getDone()
-    console.log("usememo")
-    setUnDones(response.data)
-  }, [unDones])
+//continue
+  // useMemo(() => {
+  //   const response = todoAPIUtil.getDone()
+  //   console.log("usememo")
+  //   setUnDones(response.data)
+  // }, [unDones])
   
   return (
     <div className="custom-shape-divider-top-1636227455" className="App">
