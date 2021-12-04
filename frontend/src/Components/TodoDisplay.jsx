@@ -18,8 +18,11 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
         console.log(e.target.value)
         const newCurrentTodos = propTodos.filter(todo => todo._id !== id )
 
+        debugger
         if(!answer) return ;
+        setTodos(old => newCurrentTodos)
         if(answer && e.target.value === "Done"){
+            //start from here, when it moves from inprogress to done, it duplicates it
             newTodo =
                 {
                     id: id,
@@ -57,7 +60,6 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
             setTodo(old => newTodo)
             setUnDones(old => [...old, newTodo])
         }
-        setTodos(old => newCurrentTodos)
         todoAPIUtil.updateTodo(newTodo)
     }
     
