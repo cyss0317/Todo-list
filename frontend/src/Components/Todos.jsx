@@ -8,7 +8,6 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     const currentDate = new Date();
     const todayMonth = currentDate.getUTCMonth() + 1;
     const todayDay = currentDate.getUTCDate() < 10 ? `0${currentDate.getUTCDate()}` : currentDate.getUTCDate() ;
-    console.log('1',typeof(todayDay))
     const todayYear = currentDate.getUTCFullYear();
     
     const [newDescription, setNewDescription] = useState("")
@@ -16,8 +15,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     const [todos, setTodos] = useState(propTodos)
     const modal = document.querySelector(`.modal-background-${status}`)
     const textArea = document.querySelector(`.description-input-${status}`)
+    console.log("todos.jsx")
 
-    console.log(`${status}`)
     window.modal = modal
 
     let newTodo = ({
@@ -46,11 +45,15 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         modal.style.display = "none"
     }
     
-    const createSubmit = (e, status) => {
+    const createSubmit = async (e, status) => {
         e.preventDefault()
+        // debugger
         textArea.value = ""
         todoAPIUtil.createTodo(newTodo)
-        setPropTodos(old => [...old, newTodo])
+        console.log(propTodos)
+        console.log('newtodo', newTodo)
+        console.log([...propTodos, newTodo])
+        await setPropTodos(old => [...old, newTodo])
         closeModal()
     }
     // console.log(status)
