@@ -62,10 +62,11 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     
     const deleteTodo = (e) => {
         e.preventDefault();
-        const newTodos = propTodos.filter(todo =>  todo._id !== id)
-        setTodos(old => newTodos)
-        todoAPIUtil.deleteTodo(id)
-        // setTodo(old => undefined)
+        if(window.confirm("Are you sure you want to delete this todo?")){
+            const newTodos = propTodos.filter(todo =>  todo._id !== id)
+            setTodos(old => newTodos)
+            todoAPIUtil.deleteTodo(id)
+        } 
     }
         
 
