@@ -50,7 +50,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         await setPropTodos(old => [...old, newTodo])
         closeModal()
     }
-
+    
         return (
             <div  className="todos-container">
                 <div className="title-addButton">
