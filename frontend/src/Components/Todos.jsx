@@ -34,7 +34,6 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
 
     const openModal = e => {
 
-        // console.log("add new thing", modal)
         e.preventDefault()
         textArea.value = ""
         modal.style.display = "block"
@@ -47,16 +46,11 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     
     const createSubmit = async (e, status) => {
         e.preventDefault()
-        // debugger
         textArea.value = ""
         todoAPIUtil.createTodo(newTodo)
-        console.log(propTodos)
-        console.log('newtodo', newTodo)
-        console.log([...propTodos, newTodo])
         await setPropTodos(old => [...old, newTodo])
         closeModal()
     }
-    // console.log(status)
 
         return (
             <div  className="todos-container">
