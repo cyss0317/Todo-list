@@ -63,7 +63,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                 {
                     propTodos.length !== 0 ?
                     propTodos.map((todo, i) => (
-                        <TodoDisplay setProgress={setProgress} setDone={setDones} setUndones={setUnDones} propTodos={propTodos} todos={todos}
+                        <TodoDisplay setProgress={setProgress} setDones={setDones} setUnDones={setUnDones} propTodos={propTodos} todos={todos}
                          setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} />
                     ))
                     :

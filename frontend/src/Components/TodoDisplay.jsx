@@ -15,7 +15,9 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
         e.preventDefault();
         let newTodo = {};
         const answer = window.confirm(`Move this to ${e.target.innerHTML}?`)
- 
+        console.log(e.target.value)
+        const newCurrentTodos = propTodos.filter(todo => todo._id !== id )
+
         if(!answer) return ;
         if(answer && e.target.value === "Done"){
             newTodo =
@@ -27,23 +29,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
                     inProgress: todo.inProgress,
                     tags: tags
                 }
-            const newTodos = todos.map(todo => {
-                if (todo.id === id) {
-                    return newTodo
-                } else {
-                    return todo
-                }
-            })
-            const newUndones = todos.map(todo => {
-                if (todo.id === id) {
-
-                } else {
-                    return todo
-                }
-            })
             setTodo(old => newTodo) 
-            setTodos(old =>newTodos)
-            // setUnDones(old => newUndones)
+            setDones(old => [...old, newTodo])
         } else if (answer && e.target.value === "In Progress") {
             newTodo =
                 {
@@ -54,15 +41,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
                     inProgress: true,
                     tags: tags
                 }
-            const newTodos = todos.map(todo => {
-                if (todo.id === id) {
-                    return newTodo
-                } else {
-                    return todo
-                }
-            })
             setTodo(old => newTodo)
-            setTodos(old => newTodos)`after delete ${status}`
+            setProgress(old => [...old, newTodo])
         } else if (answer && e.target.value === "Upcoming"){
             newTodo =
                 {
@@ -73,17 +53,12 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
                     inProgress: false,
                     tags: tags
                 }
-            const newTodos = todos.map(todo => {
-                if (todo.id === id) {
-                    return newTodo
-                } else {
-                    return todo
-                }
-            })`after delete ${status}`
+
             setTodo(old => newTodo)
-            setTodos(old => newTodos)
+            setUnDones(old => [...old, newTodo])
         }
-            todoAPIUtil.updateTodo(newTodo)
+        setTodos(old => newCurrentTodos)
+        todoAPIUtil.updateTodo(newTodo)
     }
     
     if(status === 'upcoming'){
