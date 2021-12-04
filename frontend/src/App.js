@@ -13,34 +13,33 @@ const App = () => {
   const [didFetchTodos, setDidFetchTodos]  = useState(false)
   console.log("app.js")
   // console.log('api call', todoAPIUtil.fetchUpcomings())
+  async function fetchUpcomings(){
+    const response = await todoAPIUtil.getUpcoming()
+    const data = await response.data
+    setUnDones(old => data)
+  }
   useEffect( () => {
-    async function fetchUpcomings(){
-      const response = await todoAPIUtil.getUpcoming()
-      const data = await response.data
-      setUnDones(data)
-    }
-    unDones.length === 0 ? fetchUpcomings() : setUnDones([])
-  },[])
+    fetchUpcomings()  
+  },[unDones.length])
 
+
+  async function fetchProgress() {
+    const response = await todoAPIUtil.getInProgress()
+    const data = await response.data
+    setProgress(old => data)
+  }
   useEffect(() => {
-    async function fetchProgress() {
-      const response = await todoAPIUtil.getInProgress()
-      const data = await response.data
-      setProgress(data)
-    }
-    progress.length === 0 ? fetchProgress() : setProgress([])
-    
-  }, [])
+    fetchProgress()
+  }, [progress.length])
 
+  async function fetchDones(){
+    const response = await todoAPIUtil.getDone()
+    const data = await response.data
+    setDones(old => data)
+  }
   useEffect(() => {
-    async function fetchDones(){
-      const response = await todoAPIUtil.getDone()
-      const data = await response.data
-      setDones(data)
-    }
-
-    dones.length === 0 ? fetchDones() : setDones([])
-  }, [])
+    fetchDones()
+  }, [dones.length])
 
   // useEffect(()=> {
 
