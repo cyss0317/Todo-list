@@ -3,7 +3,7 @@ import {useState, useEffect} from "react"
 import * as todoAPIUtil from "../util/todo_util"
 
 
-const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, todos, setTodos, setDones, setUnDones, setProgress}) => {
+const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, status, todos, setTodos, setDones, setUnDones, setProgress}) => {
     const [todo, setTodo] = useState(propTodo)
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
@@ -91,14 +91,18 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
         }
             todoAPIUtil.updateTodo(newTodo)
     }
-
+    
+    console.log(`after delete ${status}`, propTodos)
     const deleteTodo = (e) => {
+
             e.preventDefault();
+        console.log(`before delete ${status}`,propTodos)
+            const newTodos = propTodos.filter(todo =>  todo._id !== id)
+            setTodos(old => newTodos)
             todoAPIUtil.deleteTodo(id)
             setTodo(old => undefined)
-        
     }
-
+        
 
     let pastDue = undefined;
 
