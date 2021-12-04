@@ -19,13 +19,27 @@ const App = () => {
       const data = await response.data
       setUnDones(data)
     }
-    fetchUpcomings()
+    unDones.length === 0 ? fetchUpcomings() : setUnDones([])
   },[])
 
   useEffect(() => {
-    async function fetchProgress() => {
+    async function fetchProgress() {
       const response = await todoAPIUtil.getInProgress()
+      const data = await response.data
+      setProgress(data)
     }
+    progress.length === 0 ? fetchProgress() : setProgress([])
+    
+  }, [])
+
+  useEffect(() => {
+    async function fetchDones(){
+      const response = await todoAPIUtil.getDone()
+      const data = await response.data
+      setDones(data)
+    }
+
+    dones.length === 0 ? fetchDones() : setDones([])
   }, [])
 
   // useEffect(()=> {
