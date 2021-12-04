@@ -38,7 +38,8 @@ const App = () => {
     setUnDones(old => data)
   }
   useMemo( () => {
-    fetchUpcomings() 
+    fetchUpcomings()
+    console.log("fetchupcomings") 
   },[unDones.length])
 
 

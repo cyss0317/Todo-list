@@ -9,13 +9,11 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     const [tag, setTag] = useState("");
     const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
     let changeButton = document.getElementById(`${id}`);
-    console.log("tododisplay")
 
     const onClickUpdateStatus =  e => {
         e.preventDefault();
         let newTodo = {};
         const answer = window.confirm(`Move this to ${e.target.innerHTML}?`)
-        console.log(e.target.value)
         const newCurrentTodos = propTodos.filter(todo => todo._id !== id )
 
         if(!answer) return ;
@@ -62,11 +60,6 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
         todoAPIUtil.updateTodo(newTodo)
     }
     
-    if(status === 'upcoming'){
-        console.log(`todos ${status}`, propTodos)
-        console.log(changeButton)
-        console.log(id)
-    }
     const deleteTodo = (e) => {
         e.preventDefault();
         const newTodos = propTodos.filter(todo =>  todo._id !== id)
@@ -79,7 +72,6 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     let pastDue = undefined;
 
     const dueDateOnChange = (e) => {
-        console.log(todo)
 
         setNewDueDate(e.target.value);
         changeButton = changeButton === null ? document.getElementById(`${id}`) : changeButton

@@ -15,7 +15,6 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     const [todos, setTodos] = useState(propTodos)
     const modal = document.querySelector(`.modal-background-${status}`)
     const textArea = document.querySelector(`.description-input-${status}`)
-    console.log("todos.jsx")
 
     window.modal = modal
 
