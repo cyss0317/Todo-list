@@ -21,8 +21,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     let newTodo = ({
         description: newDescription,
         dueDate: newDueDate,
-        done: status === "done" ? true : false,
-        inProgress: status === "inProgress" ? true : false,
+        done: status === "done",
+        inProgress: status === "inProgress",
         tags: []
     })
 

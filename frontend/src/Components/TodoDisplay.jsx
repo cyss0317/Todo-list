@@ -219,13 +219,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
                             </div>
                              <button id={id} className="change-dueDate-button" onClick={ e => dueDateSubmit(e)} style={{display:"none"}}>Click to change</button>
                         </div>
-                        {
-                            // (pastDue && status === "upcoming") || (pastDue && status === "inProgress") ? 
-                            // <p style={{color: "red"}}>Past Due</p>
-                            // :
-                            // <p style={{ color: "#3992EB" }}>DONE</p>
-                            pastDueRendering(status)
-                        }
+                            {pastDueRendering(status)}
                     </div>
                     {
                         statusButtons(status)
