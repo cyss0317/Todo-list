@@ -28,10 +28,6 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         tags: []
     })
 
-    const onChangeSetDueDate = e => {
-        setNewDueDate(e.target.value)
-        console.log(e.target.value)
-    }
 
     const setDescriptionOnChange = (e) => {
         setNewDescription(e.target.value)
@@ -86,8 +82,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                                 onChange={e => setDescriptionOnChange(e)}/>
                             
                             <label htmlFor="dueDate">Due date:  </label>
-                            {/* <input type="date" value={newDueDate} onChange={e => setNewDueDate(e.target.value)}/> */}
-                            <input type="date" value={newDueDate} onChange={e => onChangeSetDueDate(e)}/>
+                            <input type="date" value={newDueDate} onChange={e => setNewDueDate(e.target.value)}/>
                             <button>submit</button>
                         </form>
 
