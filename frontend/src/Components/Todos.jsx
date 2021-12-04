@@ -9,9 +9,11 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     const todayMonth = currentDate.getUTCMonth() + 1;
     const todayDay = currentDate.getUTCDate() < 10 ? `0${currentDate.getUTCDate()}` : currentDate.getUTCDate() ;
     const todayYear = currentDate.getUTCFullYear();
+    const day = currentDate.getUTCDay()
     
     const [newDescription, setNewDescription] = useState("")
     const [newDueDate, setNewDueDate] = useState(`${todayYear}-${todayMonth}-${todayDay}`)
+    const [dueDateDay, setDueDateDay] = useState(0)
     const [todos, setTodos] = useState(propTodos)
     const modal = document.querySelector(`.modal-background-${status}`)
     const textArea = document.querySelector(`.description-input-${status}`)
@@ -26,6 +28,10 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         tags: []
     })
 
+    const onChangeSetDueDate = e => {
+        setNewDueDate(e.target.value)
+        console.log(e.target.value)
+    }
 
     const setDescriptionOnChange = (e) => {
         setNewDescription(e.target.value)
@@ -80,7 +86,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                                 onChange={e => setDescriptionOnChange(e)}/>
                             
                             <label htmlFor="dueDate">Due date:  </label>
-                            <input type="date" value={newDueDate} onChange={e => setNewDueDate(e.target.value)}/>
+                            {/* <input type="date" value={newDueDate} onChange={e => setNewDueDate(e.target.value)}/> */}
+                            <input type="date" value={newDueDate} onChange={e => onChangeSetDueDate(e)}/>
                             <button>submit</button>
                         </form>
 
