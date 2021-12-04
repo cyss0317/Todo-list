@@ -3,21 +3,26 @@ import {useState, useEffect} from "react"
 import * as todoAPIUtil from "../util/todo_util"
 
 
-const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, todos, setTodos, setDones, setUnDones, setProgress}) => {
+const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, status, todos, setTodos, setDones, setUnDones, setProgress}) => {
     const [todo, setTodo] = useState(propTodo)
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
     const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
-    const changeButton = document.getElementById(`${id}`);
-    // console.log("tododisplay")
+    let changeButton = document.getElementById(`${id}`);
+    console.log("tododisplay")
 
     const onClickUpdateStatus =  e => {
         e.preventDefault();
         let newTodo = {};
         const answer = window.confirm(`Move this to ${e.target.innerHTML}?`)
- 
+        console.log(e.target.value)
+        const newCurrentTodos = propTodos.filter(todo => todo._id !== id )
+
+        debugger
         if(!answer) return ;
+        setTodos(old => newCurrentTodos)
         if(answer && e.target.value === "Done"){
+            //start from here, when it moves from inprogress to done, it duplicates it
             newTodo =
                 {
                     id: id,
@@ -27,25 +32,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
                     inProgress: todo.inProgress,
                     tags: tags
                 }
-            const newTodos = todos.map(todo => {
-                if (todo.id === id) {
-                    return newTodo
-                } else {
-                    return todo
-                }
-            })
-            const newUndones = todos.map(todo => {
-                if (todo.id === id) {
-
-                } else {
-                    return todo
-                }
-            })
             setTodo(old => newTodo) 
-            setTodos(old =>newTodos)
-            console.log(newTodo)
-            console.log(newTodos)
-            // setUnDones(old => newUndones)
+            setDones(old => [...old, newTodo])
         } else if (answer && e.target.value === "In Progress") {
             newTodo =
                 {
@@ -56,17 +44,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
                     inProgress: true,
                     tags: tags
                 }
-            const newTodos = todos.map(todo => {
-                if (todo.id === id) {
-                    return newTodo
-                } else {
-                    return todo
-                }
-            })
             setTodo(old => newTodo)
-            setTodos(old => newTodos)
-            console.log(newTodo)
-            console.log(newTodos)
+            setProgress(old => [...old, newTodo])
         } else if (answer && e.target.value === "Upcoming"){
             newTodo =
                 {
@@ -77,41 +56,39 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
                     inProgress: false,
                     tags: tags
                 }
-            const newTodos = todos.map(todo => {
-                if (todo.id === id) {
-                    return newTodo
-                } else {
-                    return todo
-                }
-            })
+
             setTodo(old => newTodo)
-            setTodos(old => newTodos)
-            console.log(newTodo)
-            console.log(newTodos)
+            setUnDones(old => [...old, newTodo])
         }
-            todoAPIUtil.updateTodo(newTodo)
+        todoAPIUtil.updateTodo(newTodo)
     }
-
+    
+    if(status === 'upcoming'){
+        console.log(`todos ${status}`, propTodos)
+        console.log(changeButton)
+        console.log(id)
+    }
     const deleteTodo = (e) => {
-            e.preventDefault();
-            todoAPIUtil.deleteTodo(id)
-            setTodo(old => undefined)
-        
+        e.preventDefault();
+        const newTodos = propTodos.filter(todo =>  todo._id !== id)
+        setTodos(old => newTodos)
+        todoAPIUtil.deleteTodo(id)
+        // setTodo(old => undefined)
     }
-
+        
 
     let pastDue = undefined;
 
     const dueDateOnChange = (e) => {
-    
+        console.log(todo)
 
         setNewDueDate(e.target.value);
+        changeButton = changeButton === null ? document.getElementById(`${id}`) : changeButton
         changeButton.style.display = "block"
     }
 
     const dueDateSubmit = (e) => {
         e.preventDefault()
-        console.log("active")
         let newTodo =
         {
             id: id,
@@ -122,8 +99,6 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
             tags: tags
         }
 
-        console.log(newDueDate)
-        console.log(newTodo)
         setTodo(old => newTodo)
         todoAPIUtil.updateTodo(newTodo)
         changeButton.style.display = "none"
@@ -269,7 +244,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, unDones, id, status, tod
         )
     } else {
         return(
-            <img src="https://cutewallpaper.org/21/loading-gif-transparent-background/Download-Loading-Gif-Generator-Transparent-Background-PNG-.gif" alt="" />
+            <>
+            </>
         )
     }
 }

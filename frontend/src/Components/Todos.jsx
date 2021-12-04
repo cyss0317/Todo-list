@@ -7,7 +7,7 @@ import * as todoAPIUtil from "../util/todo_util"
 const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, setUnDones, setDones}) => {
     const currentDate = new Date();
     const todayMonth = currentDate.getUTCMonth() + 1;
-    const todayDay = currentDate.getUTCDate();
+    const todayDay = currentDate.getUTCDate() < 10 ? `0${currentDate.getUTCDate()}` : currentDate.getUTCDate() ;
     const todayYear = currentDate.getUTCFullYear();
     
     const [newDescription, setNewDescription] = useState("")
@@ -15,8 +15,8 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     const [todos, setTodos] = useState(propTodos)
     const modal = document.querySelector(`.modal-background-${status}`)
     const textArea = document.querySelector(`.description-input-${status}`)
+    console.log("todos.jsx")
 
-    console.log(`${status}`)
     window.modal = modal
 
     let newTodo = ({
@@ -34,7 +34,6 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
 
     const openModal = e => {
 
-        // console.log("add new thing", modal)
         e.preventDefault()
         textArea.value = ""
         modal.style.display = "block"
@@ -45,14 +44,13 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         modal.style.display = "none"
     }
     
-    const createSubmit = (e, status) => {
+    const createSubmit = async (e, status) => {
         e.preventDefault()
         textArea.value = ""
         todoAPIUtil.createTodo(newTodo)
-        setPropTodos(old => [...old, newTodo])
+        await setPropTodos(old => [...old, newTodo])
         closeModal()
     }
-    // console.log(status)
 
         return (
             <div  className="todos-container">
@@ -65,7 +63,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                 {
                     propTodos.length !== 0 ?
                     propTodos.map((todo, i) => (
-                        <TodoDisplay setProgress={setProgress} setDone={setDones} setUndones={setUnDones} todos={todos}
+                        <TodoDisplay setProgress={setProgress} setDones={setDones} setUnDones={setUnDones} propTodos={propTodos} todos={todos}
                          setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} />
                     ))
                     :

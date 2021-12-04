@@ -53,3 +53,30 @@ export const getTodos = async () => {
         alert(`getTodos request failed, because ${err}`)
     }
 }
+
+export const getUpcoming = async () => {
+    try{
+        const res = await axios.get(`/api/todos/upcoming`)
+        return res
+    } catch(err){
+        alert(`getUpcomings request failed, because ${err}`)
+    }
+}
+
+export const getInProgress = async () => {
+    try{
+        const res = await axios.get(`/api/todos/inProgress`)
+        return res
+    } catch(err){
+        alert(`getInProgress request failed, because ${err}`)
+    }
+}
+
+export const getDone = async () => {
+    try{
+        const res = await axios.get(`/api/todos/done`)
+        return res
+    } catch(err){
+        alert(`getDone request failed, because ${err}`)
+    }
+}
