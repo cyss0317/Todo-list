@@ -11,16 +11,34 @@ const App = () => {
   const [progress, setProgress] = useState([]);
   const [dones, setDones ] = useState([]);
   const [didFetchTodos, setDidFetchTodos]  = useState(false)
-  console.log("app.js")
-  // console.log('api call', todoAPIUtil.fetchUpcomings())
+
+
+  useEffect(() => {
+
+    const fetchTodos = async () => {
+      const response = await todoAPIUtil.getTodos()
+      const data = await response.data
+      setTodos(old => data)
+    }
+    fetchTodos()
+    todos.forEach(todo => {
+      if (!todo.done && !todo.inProgress) {
+        setUnDones(old => [...old, todo])
+      } else if (todo.done) {
+        setDones(old => [...old, todo])
+      } else if (todo.inProgress) {
+        setProgress(old => [...old, todo])
+      }
+    })
+  }, [])
+
   async function fetchUpcomings(){
     const response = await todoAPIUtil.getUpcoming()
     const data = await response.data
     setUnDones(old => data)
   }
-  useEffect( () => {
+  useMemo( () => {
     fetchUpcomings() 
-    console.log('upcoming useEffect') 
   },[unDones.length])
 
 
@@ -29,7 +47,7 @@ const App = () => {
     const data = await response.data
     setProgress(old => data)
   }
-  useEffect(() => {
+  useMemo(() => {
     fetchProgress()
   }, [progress.length])
 
@@ -38,36 +56,12 @@ const App = () => {
     const data = await response.data
     setDones(old => data)
   }
-  useEffect(() => {
+  useMemo(() => {
     fetchDones()
   }, [dones.length])
 
-  // useEffect(()=> {
 
-  //   const fetchTodos = async () => {
-  //     const response = await todoAPIUtil.getTodos()
-  //     const data = await response.data
-  //     setTodos(old => data)
-  //   }
-  //   if( didFetchTodos ){
-  //     setDidFetchTodos(false)
-  //   }else {
-  //     setDidFetchTodos(true)
-  //     fetchTodos()
-  //   }
-  //   // fetchTodos()
-  //   // setDones([])
-  //   setProgress([])
 
-  //   console.log("useEffect App.js")
-    
-  // },[todos])
-//continue
-  // useMemo(() => {
-  //   const response = todoAPIUtil.getDone()
-  //   console.log("usememo")
-  //   setUnDones(response.data)
-  // }, [unDones])
   
   return (
     <div className="custom-shape-divider-top-1636227455" className="App">

@@ -18,7 +18,6 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
         console.log(e.target.value)
         const newCurrentTodos = propTodos.filter(todo => todo._id !== id )
 
-        debugger
         if(!answer) return ;
         setTodos(old => newCurrentTodos)
         if(answer && e.target.value === "Done"){
@@ -29,7 +28,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
                     description: todo.description,
                     dueDate: todo.dueDate,
                     done: true,
-                    inProgress: todo.inProgress,
+                    inProgress: false,
                     tags: tags
                 }
             setTodo(old => newTodo) 
