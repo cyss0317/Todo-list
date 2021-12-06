@@ -213,7 +213,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
                         </form>
                         <div className="change-dueDates-container">
                             <div className="due-date-hover-effect">
-                                <span>Due: </span>< input type="date" className="dueDate" onClick={e => document.querySelector(".change-")} onChange={e => dueDateOnChange(e)}
+                                <span>Due: </span>< input type="date" className="dueDate" onClick={e => changeButton.style = "block"} onChange={e => dueDateOnChange(e)}
                                 defaultValue={newDueDate} >
                                 </input >
     
