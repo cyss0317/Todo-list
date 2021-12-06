@@ -91,15 +91,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
         todoAPIUtil.updateTodo(newTodo)
     }
     
-function do_check()
-{
-    var return_value=prompt("Password:");
-    if(return_value==="your_password")
-        return true;
-    else
-        return false;
 
-}
 
     const deleteTodo = (e) => {
         e.preventDefault();
@@ -110,7 +102,7 @@ function do_check()
                 setTodos(old => newTodos)
                 todoAPIUtil.deleteTodo(id)  
             } else {
-                window.alert("password not matched")
+                window.alert("password did not match")
             }
         } else {
             if(window.confirm("Do you want to delete this Todo?")){
