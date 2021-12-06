@@ -8,9 +8,10 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
     const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
+    const [day, setDay] = useState(0)
     let changeButton = document.getElementById(`${id}`);
 
-    let date = new Date();
+
 
     const onClickUpdateStatus =  e => {
         e.preventDefault();
@@ -76,8 +77,9 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     let pastDue = undefined;
 
     const dueDateOnChange = (e) => {
-
+        console.log(e.target.value)
         setNewDueDate(e.target.value);
+        setDay(e.target.value.getDay())
         changeButton = changeButton === null ? document.getElementById(`${id}`) : changeButton
         changeButton.style.display = "block"
     }
@@ -216,10 +218,9 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
                         </form>
                         <div className="change-dueDates-container">
                             <div className="due-date-hover-effect">
-                                <span>Due: </span>< input type="date" className="dueDate" onClick={e => changeButton.style = "block"} onChange={e => dueDateOnChange(e)}
-                                defaultValue={newDueDate} > <span>{newDueDate.getDay()}</span>
+                                <span>Due: {day}</span>< input type="date" className="dueDate" onClick={e => changeButton.style = "block"} onChange={e => dueDateOnChange(e)}
+                                defaultValue={newDueDate} > 
                                 </input >
-
     
                             </div>
                              <button id={id} className="change-dueDate-button" onClick={ e => dueDateSubmit(e)} style={{display:"none"}}>Click to change</button>

@@ -9,11 +9,10 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     const todayMonth = currentDate.getUTCMonth() + 1;
     const todayDay = currentDate.getUTCDate() < 10 ? `0${currentDate.getUTCDate()}` : currentDate.getUTCDate() ;
     const todayYear = currentDate.getUTCFullYear();
-    const day = currentDate.getUTCDay()
     
     const [newDescription, setNewDescription] = useState("")
     const [newDueDate, setNewDueDate] = useState(`${todayYear}-${todayMonth}-${todayDay}`)
-    const [dueDateDay, setDueDateDay] = useState(0)
+    const [day, setDay] = useState(0)
     const [todos, setTodos] = useState(propTodos)
     const modal = document.querySelector(`.modal-background-${status}`)
     const textArea = document.querySelector(`.description-input-${status}`)
@@ -28,6 +27,10 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         tags: []
     })
 
+    const onChangeSetDate = e => {
+        setNewDueDate(e.target.value)
+        setDay(new Date(`${todayYear}-${todayMonth}-${todayDay}`).getDay())
+    }
 
     const setDescriptionOnChange = (e) => {
         setNewDescription(e.target.value)
@@ -65,7 +68,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                     propTodos.length !== 0 ?
                     propTodos.map((todo, i) => (
                         <TodoDisplay setProgress={setProgress} setDones={setDones} setUnDones={setUnDones} propTodos={propTodos} todos={todos}
-                         setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} />
+                         setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} day={day} />
                     ))
                     :
                     <p style={{fontSize: "1.5rem"}}>There is nothing todo in {status}</p>
