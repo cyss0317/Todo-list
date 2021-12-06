@@ -8,11 +8,37 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
     const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
-    const [day, setDay] = useState(new Date(propTodo.dueDate).getDay())
-
+    const [day, setDay] = useState(numberToDay(new Date(propTodo.dueDate).getDay()))
+    
     let changeButton = document.getElementById(`${id}`);
 
 
+    useEffect(() => {
+        setDay(new Date(newDueDate).getDay())
+    }, [newDueDate])
+
+    function numberToDay(number)  {
+        switch (number){
+            case 0:
+                return "Sun"
+            case 1:
+                return "Mon"
+            case 2:
+                return "Tue"
+            case 3:
+                return "Wed"
+            case 4:
+                return "Thur"
+            case 5:
+                return "Fri"
+            case 6:
+                return "Sat"
+            default:
+                break
+        }
+
+    }
+    
 
     const onClickUpdateStatus =  e => {
         e.preventDefault();
