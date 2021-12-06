@@ -8,31 +8,31 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
     const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
-    const [day, setDay] = useState(numberToDay(new Date(propTodo.dueDate).getDay()))
-    
+    const [numDay, setNumDay] = useState(new Date(propTodo.dueDate).getDay())
+    const [day, setDay] = useState(numberToDay(numDay))
+    // numberToDay(new Date('2021-12-11').getDay())
+
     let changeButton = document.getElementById(`${id}`);
 
-
     useEffect(() => {
-        setDay(new Date(newDueDate).getDay())
+        setDay(numberToDay(numDay))
     }, [newDueDate])
-
     function numberToDay(number)  {
         switch (number){
-            case 0:
-                return "Sun"
-            case 1:
-                return "Mon"
-            case 2:
-                return "Tue"
-            case 3:
-                return "Wed"
-            case 4:
-                return "Thur"
-            case 5:
-                return "Fri"
             case 6:
-                return "Sat"
+                return "Sun"
+            case 0:
+                return "Mon"
+            case 1:
+                return "Tues"
+            case 2:
+                return "Wednes"
+            case 3:
+                return "Thurs"
+            case 4:
+                return "Fri"
+            case 5:
+                return "Satur"
             default:
                 break
         }
@@ -106,7 +106,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     const dueDateOnChange = (e) => {
         console.log(e.target.value)
         setNewDueDate(e.target.value);
-        // setDay(e.target.value.getDay())
+        setNumDay(new Date(e.target.value).getDay())
         changeButton = changeButton === null ? document.getElementById(`${id}`) : changeButton
         changeButton.style.display = "block"
     }
@@ -245,7 +245,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
                         </form>
                         <div className="change-dueDates-container">
                             <div className="due-date-hover-effect">
-                                <span>Due: {day}</span>< input type="date" className="dueDate" onClick={e => changeButton.style = "block"} onChange={e => dueDateOnChange(e)}
+                                <span>Due: {day}day</span>< input type="date" className="dueDate" onClick={e => changeButton.style = "block"} onChange={e => dueDateOnChange(e)}
                                 defaultValue={newDueDate} > 
                                 </input >
     
