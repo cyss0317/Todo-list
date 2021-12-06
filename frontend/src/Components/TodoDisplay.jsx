@@ -126,7 +126,6 @@ function do_check()
     let pastDue = undefined;
 
     const dueDateOnChange = (e) => {
-        console.log(e.target.value)
         setNewDueDate(e.target.value);
         setNumDay(new Date(e.target.value).getDay())
         changeButton = changeButton === null ? document.getElementById(`${id}`) : changeButton
