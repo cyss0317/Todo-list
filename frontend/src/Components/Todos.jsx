@@ -12,7 +12,6 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
     
     const [newDescription, setNewDescription] = useState("")
     const [newDueDate, setNewDueDate] = useState(`${todayYear}-${todayMonth}-${todayDay}`)
-    const [day, setDay] = useState(0)
     const [todos, setTodos] = useState(propTodos)
     const modal = document.querySelector(`.modal-background-${status}`)
     const textArea = document.querySelector(`.description-input-${status}`)
@@ -27,10 +26,6 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
         tags: []
     })
 
-    const onChangeSetDate = e => {
-        setNewDueDate(e.target.value)
-        setDay(new Date(`${todayYear}-${todayMonth}-${todayDay}`).getDay())
-    }
 
     const setDescriptionOnChange = (e) => {
         setNewDescription(e.target.value)
@@ -68,7 +63,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                     propTodos.length !== 0 ?
                     propTodos.map((todo, i) => (
                         <TodoDisplay setProgress={setProgress} setDones={setDones} setUnDones={setUnDones} propTodos={propTodos} todos={todos}
-                         setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} day={day} />
+                         setTodos={setPropTodos} status={status} key={i} id={todo._id} propTodo={todo} />
                     ))
                     :
                     <p style={{fontSize: "1.5rem"}}>There is nothing todo in {status}</p>
@@ -86,6 +81,7 @@ const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, set
                             
                             <label htmlFor="dueDate">Due date:  </label>
                             <input type="date" value={newDueDate} onChange={e => setNewDueDate(e.target.value)}/>
+                            {/* <input type="date" value={newDueDate} onChange={e => onChangeSetDate(e)}/> */}
                             <button>submit</button>
                         </form>
 

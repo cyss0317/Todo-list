@@ -8,7 +8,8 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     const [tags, setTags] = useState(propTodo.tags);
     const [tag, setTag] = useState("");
     const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
-    const [day, setDay] = useState(0)
+    const [day, setDay] = useState(new Date(propTodo.dueDate).getDay())
+
     let changeButton = document.getElementById(`${id}`);
 
 
@@ -79,7 +80,7 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
     const dueDateOnChange = (e) => {
         console.log(e.target.value)
         setNewDueDate(e.target.value);
-        setDay(e.target.value.getDay())
+        // setDay(e.target.value.getDay())
         changeButton = changeButton === null ? document.getElementById(`${id}`) : changeButton
         changeButton.style.display = "block"
     }
