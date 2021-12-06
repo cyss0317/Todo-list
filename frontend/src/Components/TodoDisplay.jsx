@@ -91,13 +91,35 @@ const TodoDisplay = ({props, propTodo, dones, progress, propTodos, unDones, id, 
         todoAPIUtil.updateTodo(newTodo)
     }
     
+function do_check()
+{
+    var return_value=prompt("Password:");
+    if(return_value==="your_password")
+        return true;
+    else
+        return false;
+
+}
+
     const deleteTodo = (e) => {
         e.preventDefault();
-        if(window.confirm("Are you sure you want to delete this todo?")){
-            const newTodos = propTodos.filter(todo =>  todo._id !== id)
-            setTodos(old => newTodos)
-            todoAPIUtil.deleteTodo(id)
-        } 
+        if(todo.tags.length >= 3){
+            const return_value = prompt("Tags length more than 3 require password to delete")
+            if (return_value === "1111"){
+                const newTodos = propTodos.filter(todo =>  todo._id !== id)
+                setTodos(old => newTodos)
+                todoAPIUtil.deleteTodo(id)  
+            } else {
+                window.alert("password not matched")
+            }
+        } else {
+            if(window.confirm("Do you want to delete this Todo?")){
+                const newTodos = propTodos.filter(todo => todo._id !== id)
+                setTodos(old => newTodos)
+                todoAPIUtil.deleteTodo(id)
+            }
+        }
+     
     }
         
 
