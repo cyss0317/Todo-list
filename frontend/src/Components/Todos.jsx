@@ -1,10 +1,61 @@
 import React from 'react';
-import {useState } from "react";
+import {useState, useEffect } from "react";
 import TodoDisplay from "./TodoDisplay"
 import * as todoAPIUtil from "../util/todo_util"
 
 
 const Todos = ({propTodos, title, status, setPropTodos, number, setProgress, setUnDones, setDones}) => {
+    const [todos, setTodos] = useState([]);
+    const [unDones, setUnDones] = useState([]);
+    const [progress, setProgress] = useState([]);
+    const [dones, setDones] = useState([]);
+
+    useEffect(() => {
+      const fetchTodos = async () => {
+        const response = await todoAPIUtil.getTodos();
+        const data = await response.data;
+        setTodos((old) => data);
+      };
+      fetchTodos();
+      todos.forEach((todo) => {
+        if (!todo.done && !todo.inProgress) {
+          setUnDones((old) => [...old, todo]);
+        } else if (todo.done) {
+          setDones((old) => [...old, todo]);
+        } else if (todo.inProgress) {
+          setProgress((old) => [...old, todo]);
+        }
+      });
+    }, []);
+
+    async function fetchUpcomings() {
+      const response = await todoAPIUtil.getUpcoming();
+      const data = await response.data;
+      setUnDones((old) => data);
+    }
+
+    useEffect(() => {
+      fetchUpcomings();
+    }, [unDones.length]);
+
+    async function fetchProgress() {
+      const response = await todoAPIUtil.getInProgress();
+      const data = await response.data;
+      setProgress((old) => data);
+    }
+    useEffect(() => {
+      fetchProgress();
+    }, [progress.length]);
+
+    async function fetchDones() {
+      const response = await todoAPIUtil.getDone();
+      const data = await response.data;
+      setDones((old) => data);
+    }
+    useEffect(() => {
+      fetchDones();
+    }, [dones.length]);
+
     const currentDate = new Date();
     const todayMonth = currentDate.getUTCMonth() + 1;
     const todayDay = currentDate.getUTCDate() < 10 ? `0${currentDate.getUTCDate()}` : currentDate.getUTCDate() ;
