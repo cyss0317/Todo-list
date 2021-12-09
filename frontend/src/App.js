@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {useState, useEffect } from "react";
+import {useState, useEffect, useMemo } from "react";
 import Todos from "./Components/Todos";
 import * as todoAPIUtil from "./util/todo_util"
 
@@ -10,6 +10,7 @@ const App = () => {
   const [unDones, setUnDones] = useState([]);
   const [progress, setProgress] = useState([]);
   const [dones, setDones ] = useState([]);
+  const [didFetchTodos, setDidFetchTodos]  = useState(false)
 
 
   useEffect(() => {
@@ -36,8 +37,7 @@ const App = () => {
     const data = await response.data
     setUnDones(old => data)
   }
-  
-  useEffect( () => {
+  useMemo( () => {
     fetchUpcomings()
   },[unDones.length])
 
@@ -47,7 +47,7 @@ const App = () => {
     const data = await response.data
     setProgress(old => data)
   }
-  useEffect(() => {
+  useMemo(() => {
     fetchProgress()
   }, [progress.length])
 
@@ -56,7 +56,7 @@ const App = () => {
     const data = await response.data
     setDones(old => data)
   }
-  useEffect(() => {
+  useMemo(() => {
     fetchDones()
   }, [dones.length])
 
