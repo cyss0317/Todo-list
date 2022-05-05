@@ -1,127 +1,209 @@
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote, q {
-	quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
-
-body{
+body {
   /* background: rgb(231,171,148); */
-  background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
-  font-family: 'Raleway', sans-serif;
+  background: linear-gradient(
+    90deg,
+    rgba(231, 171, 148, 1) 2%,
+    rgba(155, 181, 218, 1) 93%
+  );
+  font-family: "Raleway", sans-serif;
   font-weight: 900;
 }
 
-
 .custom-shape-divider-top-1636227455 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
 }
 
 .custom-shape-divider-top-1636227455 svg {
-    position: relative;
-    display: block;
-    width: calc(155% + 1.3px);
-    height: 324px;
-    transform: rotateY(180deg);
+  position: relative;
+  display: block;
+  width: calc(155% + 1.3px);
+  height: 324px;
+  transform: rotateY(180deg);
 }
 
 .custom-shape-divider-top-1636227455 .shape-fill {
-    fill: white;
+  fill: white;
 }
 
-
-.containers{
+.containers {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: space-between;
-
 }
 
-.title{
+.title {
   font-size: 2rem;
   word-break: break-word;
 }
 
-.todos-container{
-  background-color: #FFFFFF50;
+.todos-container {
+  background-color: #ffffff50;
   width: 26%;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0px 14px 14px 0px #0F304F50;
-
+  box-shadow: 0px 14px 14px 0px #0f304f50;
 }
 
-.todo-list{
-  
+.todo-list {
 }
 
-.todo{
+.todo {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: #E6F4F180;
+  background-color: #e6f4f180;
   border-radius: 5px;
   padding: 6px;
 }
 
-.todos-container > .todo > div > div> button:not(.dueDate, .status-buttons > button){
+.todos-container
+  > .todo
+  > div
+  > div
+  > button:not(.dueDate, .status-buttons > button) {
   margin: 0px 5px 10px 0px;
   background-color: #bcdedb20;
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   font-size: 20px;
   color: #5b7eaf;
-  border-color: rgb(231,171,148);;
-  
+  border-color: rgb(231, 171, 148);
+
   /* color: #E0EEEC; */
 }
 
-.dueDate{
+.dueDate {
   border: none;
   font-size: 20px;
   cursor: pointer;
@@ -129,20 +211,18 @@ body{
   margin-bottom: 8px;
   width: 100%;
   word-wrap: break-word;
-
 }
-.dueDate:hover{
+.dueDate:hover {
   transform: scale(0.95);
-  transition: .01s;
+  transition: 0.01s;
 
   /* border-bottom: 1px solid #22222280; */
-
 }
-.dueDate:active{
+.dueDate:active {
   transform: scale(1.05);
-  transition: .01s;
+  transition: 0.01s;
 }
-.description{
+.description {
   font-size: 25px;
   margin: 10px 0px 15px 0px;
   word-wrap: break-word;
@@ -155,29 +235,27 @@ body{
   margin: 3px 0px 6px 0px;
 } */
 
-.addTodo{
+.addTodo {
   border: none;
   font-size: 23px;
   background-color: transparent;
   color: #22222290;
   cursor: pointer;
-
 }
-.addTodo:hover{
+.addTodo:hover {
   transform: scale(0.95);
-  transition: .05s;
-  
+  transition: 0.05s;
 }
-.addTodo:active{
+.addTodo:active {
   transform: scale(1.1);
-  transition: .05s;
+  transition: 0.05s;
 }
 
-.description{
+.description {
   margin-right: 5px;
 }
 
-.X-button{
+.X-button {
   justify-content: flex-end;
   display: inline-block;
   font-size: 19px;
@@ -185,11 +263,10 @@ body{
   top: 1px;
   border: none;
   cursor: pointer;
-  background-color:transparent;
+  background-color: transparent;
 }
 
-.info-section{
-
+.info-section {
   width: 90%;
   height: 90%;
   margin-right: 1%;
@@ -198,9 +275,8 @@ body{
   /* justify-content: space-evenly; */
   align-items: flex-start;
   padding: 20px;
-
 }
-#description-input{
+#description-input {
   width: 100%;
   height: 40%;
   font-size: 18px;
@@ -216,9 +292,8 @@ body{
   width: 100%;
 }
 
-#modal-close-button{
+#modal-close-button {
   border: none;
-
 }
 
 .info-section > * {
@@ -226,46 +301,47 @@ body{
 }
 /* .info-section */
 
-#modal-close-button{
+#modal-close-button {
   align-self: flex-start;
   position: relative;
   left: -3%;
   top: 3%;
-  
+
   /* justify-content: flex-start; */
-
 }
 
-.X-button:hover{
+.X-button:hover {
   color: red;
-  transition: .01s;
-  transform: scale(.9)
+  transition: 0.01s;
+  transform: scale(0.9);
 }
-.X-button:active{
-  transition: .01s;
-  transform: scale(1.1)
-
+.X-button:active {
+  transition: 0.01s;
+  transform: scale(1.1);
 }
 
-.todo-sub{
+.todo-sub {
   width: 100%;
 }
 
 .info-section > button {
-  background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
+  background: linear-gradient(
+    90deg,
+    rgba(231, 171, 148, 1) 2%,
+    rgba(155, 181, 218, 1) 93%
+  );
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   font-size: 23px;
-  border-color: #408A8480;
+  border-color: #408a8480;
   cursor: pointer;
   color: white;
   margin-top: 20px;
   align-self: center;
   width: 100%;
-
 }
 
-.tag-input > input{
+.tag-input > input {
   border: none;
   padding: 3px;
   font-size: 20px;
@@ -276,25 +352,26 @@ body{
   width: 100%;
 }
 
-.tag-input > input:focus, textarea:focus{
+.tag-input > input:focus,
+textarea:focus {
   outline: none;
 }
 
 input.dueDate[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
+  display: none;
+  -webkit-appearance: none;
 }
 
-
-
-
-.change-dueDate-button{
-
-  background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
+.change-dueDate-button {
+  background: linear-gradient(
+    90deg,
+    rgba(231, 171, 148, 1) 2%,
+    rgba(155, 181, 218, 1) 93%
+  );
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   font-size: 20px;
-  border-color: #408A8480;
+  border-color: #408a8480;
   cursor: pointer;
   color: white;
   width: 95%;
@@ -302,15 +379,14 @@ input.dueDate[type="date"]::-webkit-calendar-picker-indicator {
   margin-left: 2.5%;
 }
 
-
-.change-dueDates-container{
+.change-dueDates-container {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
   flex-wrap: wrap;
 }
 
-.description-and-X{
+.description-and-X {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -318,17 +394,17 @@ input.dueDate[type="date"]::-webkit-calendar-picker-indicator {
   width: 100%;
 }
 
-
 .change-dueDates-container > div {
   position: relative;
   top: 4px;
 }
 
-.due-hover-message:hover, .due-hover-message{
+.due-hover-message:hover,
+.due-hover-message {
   visibility: visible;
 }
 
-.done-progress-container{
+.done-progress-container {
   margin-top: 15px;
   display: flex;
   justify-content: space-evenly;
@@ -336,58 +412,60 @@ input.dueDate[type="date"]::-webkit-calendar-picker-indicator {
 }
 .done-progress-container > div > p {
   margin-bottom: 7px;
-
 }
 
-.description-and-X ~ button{
+.description-and-X ~ button {
   cursor: pointer;
 }
 
-
 input[type="radio"] {
-  -webkit-appearance: checkbox; 
-  -moz-appearance: checkbox;    
-  -ms-appearance: checkbox;     
+  -webkit-appearance: checkbox;
+  -moz-appearance: checkbox;
+  -ms-appearance: checkbox;
 }
 
-.status-buttons{
+.status-buttons {
   display: flex;
   justify-content: space-evenly;
-  align-items:center;
+  align-items: center;
   margin-top: 10px;
   flex-wrap: wrap;
 }
 
-.status-buttons > button{
-  background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
+.status-buttons > button {
+  background: linear-gradient(
+    90deg,
+    rgba(231, 171, 148, 1) 2%,
+    rgba(155, 181, 218, 1) 93%
+  );
   padding: 5px 10px 5px 10px;
   border-radius: 5px;
   font-size: 20px;
-  border-color: #408A8480;
+  border-color: #408a8480;
   cursor: pointer;
   color: white;
   width: 95%;
   margin-top: 5px;
 }
 
-.status-buttons > button:hover{
+.status-buttons > button:hover {
   transform: scale(0.95);
   transition: 0.1s;
 }
 
-body{
+body {
   min-width: 600px;
 }
-.status-buttons > button:active{
+.status-buttons > button:active {
   transform: scale(1.05);
   transition: 0.1s;
 }
 
-.title-container{
+.title-container {
   display: flex;
   justify-content: space-around;
 }
-.title-addButton{
+.title-addButton {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -395,11 +473,10 @@ body{
   flex-wrap: wrap;
 }
 
-.todo{
+.todo {
   margin-bottom: 10px;
 }
-#modal-background{
-
+#modal-background {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -407,40 +484,42 @@ body{
   left: 0;
   background: rgba(0, 0, 0, 0.7);
   z-index: 10;
-
 }
 
-.status-x-button{
+.status-x-button {
   display: flex;
   width: 100%;
   margin: 5% 5% 0 8%;
   justify-content: space-between;
 }
 
-.status-x-button > div{
+.status-x-button > div {
   font-size: 30px;
 }
 .modal-child {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	height: 500px;
-	width: 400px;
-  background: linear-gradient(90deg, rgba(231,171,148,1) 2%, rgba(155,181,218,1) 93%);
-	display: flex;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 500px;
+  width: 400px;
+  background: linear-gradient(
+    90deg,
+    rgba(231, 171, 148, 1) 2%,
+    rgba(155, 181, 218, 1) 93%
+  );
+  display: flex;
   flex-direction: column;
   border-radius: 10px;
-	justify-content: center;
-	align-items: center;
-
+  justify-content: center;
+  align-items: center;
 }
 
-.tag-button:hover{
-  transform: scale(.9);
-  transition: .1s;
+.tag-button:hover {
+  transform: scale(0.9);
+  transition: 0.1s;
 }
-.tag-button:active{
+.tag-button:active {
   transform: scale(1.05);
-  transition: .1s;
+  transition: 0.1s;
 }
