@@ -13,5 +13,3 @@ export interface TodoPartialUpdate {
   dueDate?: string;
   tags?: Array<string>;
 }
-
-

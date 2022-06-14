@@ -3,7 +3,6 @@ import Todos from "components/todos/Todos";
 import { useState, useEffect, useMemo } from "react";
 import * as todoAPIUtil from "util/todo_util";
 
-
 const FullLayout = () => {
   const [todos, setTodos] = useState([]);
   const [unDones, setUnDones] = useState([]);
