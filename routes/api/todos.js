@@ -8,7 +8,8 @@ router.get("/test", (req, res) => {
 });
 
 router.post("/create", (req, res) => {
-  const { errors, isValid } = validateRegisterTodo(req.body);
+  const data = req.body;
+  const { errors, isValid } = validateRegisterTodo(data);
 
   if (!isValid) return res.status(400).json(errors);
   const currentDate = new Date();
@@ -17,11 +18,11 @@ router.post("/create", (req, res) => {
   const todayYear = currentDate.getUTCFullYear();
 
   const newTodo = new Todo({
-    description: req.body.description,
-    done: req.body.done,
-    inProgress: req.body.inProgress,
-    dueDate: req.body.dueDate
-      ? req.body.dueDate
+    description: data.description,
+    done: data.done,
+    inProgress: data.inProgress,
+    dueDate: data.dueDate
+      ? data.dueDate
       : `${todayYear}-${todayMonth}-${todayDay}`,
     tags: [],
   });

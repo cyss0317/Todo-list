@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import * as todoAPIUtil from "../util/todo_util";
+import * as todoAPIUtil from "util/todo_util";
 
 const TodoDisplay = ({
   props,
@@ -30,6 +30,7 @@ const TodoDisplay = ({
   useEffect(() => {
     setDay(numberToDay(numDay));
   }, [newDueDate]);
+
   function numberToDay(number) {
     switch (number) {
       case 6:

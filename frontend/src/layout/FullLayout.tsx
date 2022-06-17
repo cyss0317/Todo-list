@@ -11,6 +11,7 @@ const FullLayout = () => {
 
   async function fetchUpcomings() {
     const response = await todoAPIUtil.getUpcoming();
+    console.log("response", response);
     const data = await response.data;
     setUnDones((old) => data);
   }

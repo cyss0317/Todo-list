@@ -6,6 +6,10 @@ export interface TodoData {
   tags: Array<string>;
 }
 
+export interface TodoId {
+  _id: string;
+}
+
 export interface TodoPartialUpdate {
   description?: string;
   done?: boolean;
