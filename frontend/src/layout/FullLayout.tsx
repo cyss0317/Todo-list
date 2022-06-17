@@ -1,58 +1,20 @@
 import React from "react";
 import Todos from "components/todos/Todos";
 import { useState, useEffect, useMemo } from "react";
-import * as todoAPIUtil from "util/todo_util";
+import { TodoData } from "sources/todos/types";
+import { useTodoApi } from "sources/todos/hooks";
 
 const FullLayout = () => {
-  const [todos, setTodos] = useState([]);
-  const [unDones, setUnDones] = useState([]);
-  const [progress, setProgress] = useState([]);
-  const [dones, setDones] = useState([]);
+  const { fetchUpcomings, fetchProgress, fetchDones } = useTodoApi();
 
-  async function fetchUpcomings() {
-    const response = await todoAPIUtil.getUpcoming();
-    console.log("response", response);
-    const data = await response.data;
-    setUnDones((old) => data);
-  }
-  useMemo(() => {
-    fetchUpcomings();
-  }, [unDones.length]);
-
-  async function fetchProgress() {
-    const response = await todoAPIUtil.getInProgress();
-    const data = await response.data;
-    setProgress((old) => data);
-  }
-  useMemo(() => {
-    fetchProgress();
-  }, [progress.length]);
-
-  async function fetchDones() {
-    const response = await todoAPIUtil.getDone();
-    const data = await response.data;
-    setDones((old) => data);
-  }
-  useMemo(() => {
-    fetchDones();
-  }, [dones.length]);
+  const [upcomings, setUpcomings] = useState<Array<TodoData>>([]);
+  const [progress, setProgress] = useState<Array<TodoData>>([]);
+  const [dones, setDones] = useState<Array<TodoData>>([]);
 
   useEffect(() => {
-    const fetchTodos = async () => {
-      const response = await todoAPIUtil.getTodos();
-      const data = await response.data;
-      setTodos((old) => data);
-    };
-    fetchTodos();
-    todos.forEach((todo) => {
-      if (!todo.done && !todo.inProgress) {
-        setUnDones((old) => [...old, todo]);
-      } else if (todo.done) {
-        setDones((old) => [...old, todo]);
-      } else if (todo.inProgress) {
-        setProgress((old) => [...old, todo]);
-      }
-    });
+    fetchUpcomings().then((todos) => setUpcomings(todos));
+    fetchProgress().then((todos) => setProgress(todos));
+    fetchDones().then((todos) => setDones(todos));
   }, []);
 
   return (
@@ -60,18 +22,18 @@ const FullLayout = () => {
       <Todos
         setProgress={setProgress}
         setDones={setDones}
-        setUnDones={setUnDones}
+        setUnDones={setUpcomings}
         key="1"
-        setPropTodos={setUnDones}
+        setPropTodos={setUpcomings}
         status="upcoming"
-        propTodos={unDones}
+        propTodos={upcomings}
         title="Upcoming"
         className="todo-list"
       />
       <Todos
         setProgress={setProgress}
         setDones={setDones}
-        setUnDones={setUnDones}
+        setUnDones={setUpcomings}
         key="2"
         setPropTodos={setProgress}
         status="inProgress"
@@ -82,7 +44,7 @@ const FullLayout = () => {
       <Todos
         setProgress={setProgress}
         setDones={setDones}
-        setUnDones={setUnDones}
+        setUnDones={setUpcomings}
         key="3"
         setPropTodos={setDones}
         status="done"

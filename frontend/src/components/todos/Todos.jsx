@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import TodoDisplay from "./TodoDisplay";
-import * as todoAPIUtil from "../../util/todo_util";
+import * as todoAPIUtil from "../../sources/todos/api";
 
 const Todos = ({
   propTodos,

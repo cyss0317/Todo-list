@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import * as todoAPIUtil from "util/todo_util";
+import * as todoAPIUtil from "sources/todos/api";
 
 const TodoDisplay = ({
   props,
