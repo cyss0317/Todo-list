@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { Box } from "@material-ui/core";
+
 import Todos from "components/todos/Todos";
-import { useState, useEffect, useMemo } from "react";
 import { TodoData } from "sources/todos/types";
 import { useTodoApi } from "sources/todos/hooks";
 
@@ -18,41 +19,46 @@ const FullLayout = () => {
   }, []);
 
   return (
-    <>
-      <Todos
-        setProgress={setProgress}
-        setDones={setDones}
-        setUnDones={setUpcomings}
-        key="1"
-        setPropTodos={setUpcomings}
-        status="upcoming"
-        propTodos={upcomings}
-        title="Upcoming"
-        className="todo-list"
-      />
-      <Todos
-        setProgress={setProgress}
-        setDones={setDones}
-        setUnDones={setUpcomings}
-        key="2"
-        setPropTodos={setProgress}
-        status="inProgress"
-        propTodos={progress}
-        title="In Progress"
-        className="progress"
-      />
-      <Todos
-        setProgress={setProgress}
-        setDones={setDones}
-        setUnDones={setUpcomings}
-        key="3"
-        setPropTodos={setDones}
-        status="done"
-        propTodos={dones}
-        title="Done"
-        className="done"
-      />
-    </>
+    <Box p={3} sx={{ display: "block", margin: "auto" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <Todos
+          setProgress={setProgress}
+          setDones={setDones}
+          setUnDones={setUpcomings}
+          setData={setUpcomings}
+          status="upcoming"
+          data={upcomings}
+          title="Upcoming"
+          className="todo-list"
+        />
+        <Todos
+          setProgress={setProgress}
+          setDones={setDones}
+          setUnDones={setUpcomings}
+          setData={setProgress}
+          status="inProgress"
+          data={progress}
+          title="In Progress"
+          className="progress"
+        />
+        <Todos
+          setProgress={setProgress}
+          setDones={setDones}
+          setUnDones={setUpcomings}
+          setData={setDones}
+          status="done"
+          data={dones}
+          title="Done"
+          className="done"
+        />
+      </Box>
+    </Box>
   );
 };
 

@@ -1,4 +1,4 @@
-export interface TodoData {
+export interface TodoData extends TodoId {
   description: string;
   done: boolean;
   inProgress: boolean;
