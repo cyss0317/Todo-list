@@ -55,7 +55,7 @@ const FullLayout = () => {
           status="done"
           data={dones}
           title="Done"
-          className="done"
+          className="done"  
         />
       </Box>
     </Box>
