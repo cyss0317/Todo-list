@@ -1,17 +1,17 @@
 import React from "react";
 import { useState } from "react";
 import TodoDisplay from "./TodoDisplay";
-import * as todoAPIUtil from "../util/todo_util";
+import * as todoAPIUtil from "../../sources/todos/api";
 
 const Todos = ({
-  propTodos,
+  data,
   title,
   status,
-  setPropTodos,
-  number,
+  setData,
   setProgress,
   setUnDones,
   setDones,
+  className,
 }) => {
   const currentDate = new Date();
   const todayMonth = currentDate.getUTCMonth() + 1;
@@ -25,10 +25,10 @@ const Todos = ({
   const [newDueDate, setNewDueDate] = useState(
     `${todayYear}-${todayMonth}-${todayDay}`
   );
-  const [todos, setTodos] = useState(propTodos);
+  const [todos, setTodos] = useState(data);
   const modal = document.querySelector(`.modal-background-${status}`);
   const textArea = document.querySelector(`.description-input-${status}`);
-
+  console.log(textArea);
   window.modal = modal;
 
   let newTodo = {
@@ -43,13 +43,12 @@ const Todos = ({
     setNewDescription(e.target.value);
   };
 
-  const openModal = (e) => {
-    e.preventDefault();
-    textArea.value = "";
+  const openModal = () => {
+    if (textArea.value.length) textArea.value = "";
     modal.style.display = "block";
   };
 
-  const closeModal = (e) => {
+  const closeModal = () => {
     modal.style.display = "none";
   };
 
@@ -57,29 +56,29 @@ const Todos = ({
     e.preventDefault();
     textArea.value = "";
     todoAPIUtil.createTodo(newTodo);
-    await setPropTodos((old) => [...old, newTodo]);
+    await setData((old) => [...old, newTodo]);
     closeModal();
   };
 
   return (
-    <div className="todos-container">
-      <div className="title-addButton">
+    <div className={`${className} todos-container`}>
+      <div className={`${className} title-addButton`}>
         <div className="title-container">
           <h1 className="title">{title}</h1>
         </div>
-        <button onClick={(e) => openModal(e)} className="addTodo">
+        <button onClick={openModal} className="addTodo">
           + Add new {title} todo{" "}
         </button>
       </div>
-      {propTodos.length !== 0 ? (
-        propTodos.map((todo, i) => (
+      {data.length !== 0 ? (
+        data.map((todo, i) => (
           <TodoDisplay
             setProgress={setProgress}
             setDones={setDones}
             setUnDones={setUnDones}
-            propTodos={propTodos}
+            propTodos={data}
             todos={todos}
-            setTodos={setPropTodos}
+            setTodos={setData}
             status={status}
             key={i}
             id={todo._id}
@@ -90,7 +89,7 @@ const Todos = ({
         <p style={{ fontSize: "1.5rem" }}>There is nothing todo in {status}</p>
       )}
       <div
-        onClick={(e) => closeModal(e)}
+        onClick={closeModal}
         id="modal-background"
         className={`modal-background-${status}`}
         style={{ display: "none" }}
