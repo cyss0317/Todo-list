@@ -2,6 +2,12 @@ import axios from "axios";
 import { TodoData, TodoId, TodoPartialUpdate } from "./types";
 import { AxiosPromise } from "axios";
 
+declare global {
+  interface Window {
+    Todo: any;
+  }
+}
+
 export class Todo {
   static baseUrl = "/api/todos";
 
@@ -62,7 +68,7 @@ export class Todo {
 
   static getTodos = async (): Promise<AxiosPromise<Array<TodoData>>> => {
     try {
-      const res = await axios.get(`${this.baseUrl}/`);
+      const res = await axios.get(`${this.baseUrl}`);
       return res;
     } catch (err) {
       // alert(`getTodos request failed, because ${err}`)
