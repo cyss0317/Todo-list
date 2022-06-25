@@ -1,7 +1,21 @@
 import React from "react";
 import { useState } from "react";
+
+import { Todo } from "sources/todos/types";
+
 import TodoDisplay from "./TodoDisplay";
 import * as todoAPIUtil from "../../sources/todos/api";
+
+interface TodosProps {
+  setProgress: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  setDones: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  setUnDones: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  setData: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  status: string;
+  data: Array<Todo>;
+  title: string;
+  className: string;
+}
 
 const Todos = ({
   data,
@@ -12,7 +26,7 @@ const Todos = ({
   setUnDones,
   setDones,
   className,
-}) => {
+}: TodosProps) => {
   const currentDate = new Date();
   const todayMonth = currentDate.getUTCMonth() + 1;
   const todayDay =

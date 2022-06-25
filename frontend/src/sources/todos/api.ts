@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TodoData, TodoId, TodoPartialUpdate } from "./types";
+import { Todo, TodoId, TodoPartialUpdate } from "./types";
 import { AxiosPromise } from "axios";
 
 declare global {
@@ -11,9 +11,7 @@ declare global {
 export class Todo {
   static baseUrl = "/api/todos";
 
-  static createTodo = async (
-    data: TodoData
-  ): Promise<AxiosPromise<TodoData>> => {
+  static createTodo = async (data: Todo): Promise<AxiosPromise<Todo>> => {
     try {
       const res = await axios.post(`${this.baseUrl}/create`, data);
       return res;
@@ -56,7 +54,7 @@ export class Todo {
     }
   };
 
-  static getTodo = async (todoId: TodoId): Promise<AxiosPromise<TodoData>> => {
+  static getTodo = async (todoId: TodoId): Promise<AxiosPromise<Todo>> => {
     try {
       const res = await axios.get(`${this.baseUrl}/${todoId}`);
       return res;
@@ -66,7 +64,7 @@ export class Todo {
     }
   };
 
-  static getTodos = async (): Promise<AxiosPromise<Array<TodoData>>> => {
+  static getTodos = async (): Promise<AxiosPromise<Array<Todo>>> => {
     try {
       const res = await axios.get(`${this.baseUrl}`);
       return res;
@@ -76,7 +74,7 @@ export class Todo {
     }
   };
 
-  static getUpcoming = async (): Promise<AxiosPromise<Array<TodoData>>> => {
+  static getUpcoming = async (): Promise<AxiosPromise<Array<Todo>>> => {
     try {
       const res = await axios.get(`${this.baseUrl}/upcoming`);
       return res;
@@ -86,7 +84,7 @@ export class Todo {
     }
   };
 
-  static getInProgress = async (): Promise<AxiosPromise<Array<TodoData>>> => {
+  static getInProgress = async (): Promise<AxiosPromise<Array<Todo>>> => {
     try {
       const res = await axios.get(`${this.baseUrl}/inProgress`);
       return res;
@@ -96,7 +94,7 @@ export class Todo {
     }
   };
 
-  static getDone = async (): Promise<AxiosPromise<Array<TodoData>>> => {
+  static getDone = async (): Promise<AxiosPromise<Array<Todo>>> => {
     try {
       const res = await axios.get(`${this.baseUrl}/done`);
       return res;

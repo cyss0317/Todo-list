@@ -2,15 +2,15 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Box } from "@material-ui/core";
 
 import Todos from "components/todos/Todos";
-import { TodoData } from "sources/todos/types";
+import { Todo } from "sources/todos/types";
 import { useTodoApi } from "sources/todos/hooks";
 
 const FullLayout = () => {
   const { fetchUpcomings, fetchProgress, fetchDones } = useTodoApi();
 
-  const [upcomings, setUpcomings] = useState<Array<TodoData>>([]);
-  const [progress, setProgress] = useState<Array<TodoData>>([]);
-  const [dones, setDones] = useState<Array<TodoData>>([]);
+  const [upcomings, setUpcomings] = useState<Array<Todo>>([]);
+  const [progress, setProgress] = useState<Array<Todo>>([]);
+  const [dones, setDones] = useState<Array<Todo>>([]);
 
   useEffect(() => {
     fetchUpcomings().then((todos) => setUpcomings(todos));
