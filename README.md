@@ -1,3 +1,12 @@
+==================================================
+This project is currently being refactored.
+# Purpose
+  - Re-write the components with better logic
+  - Adding types by writing code in TypeScript
+  - Change out HTML tags to Material-UI components
+==================================================
+
+
 # Todo-List
 
 Todo-List is an web application where user can create and remove things to do and add tags for each todo. Tags can be removed by simply clicking on. It has three status available, upcoming, in progress, and done. Depending on the status of todo, user can change the status by clicking on upcoming, in progress, done buttons.
