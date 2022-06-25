@@ -28,7 +28,7 @@ const Todos = ({
   const [todos, setTodos] = useState(data);
   const modal = document.querySelector(`.modal-background-${status}`);
   const textArea = document.querySelector(`.description-input-${status}`);
-
+  console.log(textArea);
   window.modal = modal;
 
   let newTodo = {
@@ -44,7 +44,7 @@ const Todos = ({
   };
 
   const openModal = () => {
-    textArea.value = "";
+    if (textArea.value.length) textArea.value = "";
     modal.style.display = "block";
   };
 

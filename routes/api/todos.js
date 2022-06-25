@@ -36,25 +36,33 @@ router.post("/create", (req, res) => {
 router.get("/", (req, res) => {
   Todo.find()
     .then((todos) => res.json(todos))
-    .catch((err) => res.status((404).json(err)));
+    .catch((err) => {
+      throw new Error(`Failed to retrieve todos: ${err}`);
+    });
 });
 
 router.get("/upcoming", (req, res) => {
   Todo.find({ done: false, inProgress: false })
     .then((todos) => res.json(todos))
-    .catch((err) => res.status(404).json(err));
+    .catch((err) => {
+      throw new Error(`Failed to retrieve upcomings: ${err}`);
+    });
 });
 
 router.get("/inprogress", (req, res) => {
   Todo.find({ inProgress: true })
     .then((todos) => res.json(todos))
-    .catch((err) => res.status(404).json(err));
+    .catch((err) => {
+      throw new Error(`Failed to retrieve inprogress: ${err}`);
+    });
 });
 
 router.get("/done", (req, res) => {
   Todo.find({ done: true })
     .then((todos) => res.json(todos))
-    .catch((err) => res.status(404).json(err));
+    .catch((err) => {
+      throw new Error(`Failed to retrieve dones: ${err}`);
+    });
 });
 
 router.get("/:id", (req, res) => {

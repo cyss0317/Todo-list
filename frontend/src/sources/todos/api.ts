@@ -32,7 +32,7 @@ export class Todo {
 
   static fetchUpcomings = async (): Promise<AxiosPromise<any>> => {
     try {
-      const res = await axios.get(`${this.baseUrl}/upcomings`);
+      const res = await axios.get(`${this.baseUrl}/upcoming`);
       return res;
     } catch (err) {
       // alert(`fetchUpcomings request failed, because ${err}`)
