@@ -31,6 +31,7 @@ const FullLayout = () => {
           setProgress={setProgress}
           setDones={setDones}
           setUnDones={setUpcomings}
+          fetchData={fetchProgress}
           setData={setUpcomings}
           status="upcoming"
           data={upcomings}
@@ -41,6 +42,7 @@ const FullLayout = () => {
           setProgress={setProgress}
           setDones={setDones}
           setUnDones={setUpcomings}
+          fetchData={fetch}
           setData={setProgress}
           status="inProgress"
           data={progress}
