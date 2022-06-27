@@ -1,5 +1,5 @@
-import { Todo } from "./api";
-import { Todo, TodoId } from "./types";
+import { Todo, TodoId } from "sources/todos/types";
+import Todos from "./api";
 
 interface TodoApiHook {
   getOne: (id: TodoId) => Promise<Todo>;
@@ -13,41 +13,41 @@ interface TodoApiHook {
 
 export function useTodoApi(): TodoApiHook {
   async function createTodo(todo: Todo) {
-    const response = await Todo.createTodo(todo);
+    const response = await Todos.createTodo(todo);
     const data = response.data;
     return data;
   }
 
   async function updateTodo(todo: Todo) {
-    const response = await Todo.updateTodo(todo._id, todo);
+    const response = await Todos.updateTodo(todo._id, todo);
     const data = response.data;
     return data;
   }
 
   async function deleteTodo(id: TodoId) {
-    return await Todo.deleteTodo(id);
+    return await Todos.deleteTodo(id);
   }
 
   async function getOne(id: TodoId) {
-    const response = await Todo.getTodo(id);
+    const response = await Todos.getTodo(id);
     const data = response.data;
     return data;
   }
 
   async function fetchUpcomings() {
-    const response = await Todo.getUpcoming();
+    const response = await Todos.getUpcoming();
     const data = response.data;
     return data;
   }
 
   async function fetchProgress() {
-    const response = await Todo.getInProgress();
+    const response = await Todos.getInProgress();
     const data = await response.data;
     return data;
   }
 
   async function fetchDones() {
-    const response = await Todo.getDone();
+    const response = await Todos.getDone();
     const data = await response.data;
     return data;
   }

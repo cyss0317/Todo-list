@@ -55,15 +55,13 @@ const Todos = ({
   };
 
   const createSubmit = async (e: any) => {
-    setDescription("")
+    setDescription("");
     const createdTodo = await createTodo(newTodo);
     await setData((old) => [...old, createdTodo]);
     setOpenModal(false);
   };
 
-  React.useEffect(() => {
-
-  }, [createTodo])
+  React.useEffect(() => {}, [createTodo]);
 
   return (
     <div className={`${className} todos-container`}>
@@ -110,10 +108,7 @@ const Todos = ({
                 X
               </button>
             </div>
-            <form
-              className="info-section"
-              onSubmit={(e) => createSubmit(e)}
-            >
+            <form className="info-section" onSubmit={(e) => createSubmit(e)}>
               <label htmlFor="descrition">Description</label>
               <TextField
                 id="description-input"

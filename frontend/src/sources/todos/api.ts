@@ -8,7 +8,7 @@ declare global {
   }
 }
 
-export class Todo {
+export default class Todos {
   static baseUrl = "/api/todos";
 
   static createTodo = async (data: Todo): Promise<AxiosPromise<Todo>> => {
