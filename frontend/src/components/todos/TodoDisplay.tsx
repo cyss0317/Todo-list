@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import { Todo } from "sources/todos/types";
-import * as from "sources/todos/api";
+// import * as from "sources/todos/api";
 import { useTodoApi } from "sources/todos/hooks";
 
 interface TodoDisplayProps {
@@ -146,7 +146,7 @@ const TodoDisplay = ({
   const dueDateSubmit = (e) => {
     e.preventDefault();
     let newTodo = {
-      id: id,
+      _id: id,
       description: todo.description,
       dueDate: newDueDate,
       done: todo.done,
