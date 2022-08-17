@@ -18,48 +18,56 @@ const FullLayout = () => {
     fetchDones().then((todos) => setDones(todos));
   }, []);
 
+  const upcomingTodos = useMemo(() => {
+    return (
+      <Todos
+        setProgress={setProgress}
+        setDones={setDones}
+        setUnDones={setUpcomings}
+        setData={setUpcomings}
+        status="upcoming"
+        data={upcomings}
+        title="Upcoming"
+        className="todo-list"
+      />
+    );
+  }, [upcomings]);
+
+  const progressTodos = useMemo(() => {
+    return (
+      <Todos
+        setProgress={setProgress}
+        setDones={setDones}
+        setUnDones={setUpcomings}
+        setData={setProgress}
+        status="inProgress"
+        data={progress}
+        title="In Progress"
+        className="progress"
+      />
+    );
+  }, [progress]);
+
+  const doneTodos = useMemo(() => {
+    return (
+      <Todos
+        setProgress={setProgress}
+        setDones={setDones}
+        setUnDones={setUpcomings}
+        setData={setDones}
+        status="done"
+        data={dones}
+        title="Done"
+        className="done"
+      />
+    );
+  }, [dones]);
+
   return (
-    <Box p={3} sx={{ display: "block", margin: "auto" }}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-        }}
-      >
-        <Todos
-          setProgress={setProgress}
-          setDones={setDones}
-          setUnDones={setUpcomings}
-          fetchData={fetchProgress}
-          setData={setUpcomings}
-          status="upcoming"
-          data={upcomings}
-          title="Upcoming"
-          className="todo-list"
-        />
-        <Todos
-          setProgress={setProgress}
-          setDones={setDones}
-          setUnDones={setUpcomings}
-          fetchData={fetch}
-          setData={setProgress}
-          status="inProgress"
-          data={progress}
-          title="In Progress"
-          className="progress"
-        />
-        <Todos
-          setProgress={setProgress}
-          setDones={setDones}
-          setUnDones={setUpcomings}
-          setData={setDones}
-          status="done"
-          data={dones}
-          title="Done"
-          className="done"
-        />
-      </Box>
+    <Box p={3} className="flex-row-g1 flex-just-space-even">
+      {upcomingTodos}
+      {progressTodos}
+      {doneTodos}
     </Box>
   );
 };

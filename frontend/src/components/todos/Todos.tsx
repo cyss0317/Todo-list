@@ -1,12 +1,21 @@
 import React from "react";
 import { useState } from "react";
-import { Dialog, Box, TextField, Typography } from "@material-ui/core";
+import {
+  Dialog,
+  Button,
+  IconButton,
+  Box,
+  TextField,
+  FormControl,
+  InputLabel,
+  Typography,
+} from "@material-ui/core";
+// import CloseIcon from "@mui/icons-material/Close";
 
 import { Todo } from "sources/todos/types";
 import { useTodoApi } from "sources/todos/hooks";
 
 import TodoDisplay from "./TodoDisplay";
-import * as todoAPIUtil from "../../sources/todos/api";
 
 interface TodosProps {
   setProgress: React.Dispatch<React.SetStateAction<Array<Todo>>>;
@@ -30,7 +39,6 @@ const Todos = ({
   className,
 }: TodosProps) => {
   const { createTodo } = useTodoApi();
-  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const currentDate = new Date();
   const todayMonth = currentDate.getUTCMonth() + 1;
@@ -39,11 +47,12 @@ const Todos = ({
       ? `0${currentDate.getUTCDate()}`
       : currentDate.getUTCDate();
   const todayYear = currentDate.getUTCFullYear();
-
-  const [description, setDescription] = useState<string>("");
   const [newDueDate, setNewDueDate] = useState<string>(
     `${todayYear}-${todayMonth}-${todayDay}`
   );
+
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [description, setDescription] = useState<string>("");
   const [todos, setTodos] = useState<Array<Todo>>(data);
 
   let newTodo = {
@@ -54,7 +63,7 @@ const Todos = ({
     tags: [],
   };
 
-  const createSubmit = async (e: any) => {
+  const createSubmit = async () => {
     setDescription("");
     const createdTodo = await createTodo(newTodo);
     await setData((old) => [...old, createdTodo]);
@@ -64,15 +73,17 @@ const Todos = ({
   React.useEffect(() => {}, [createTodo]);
 
   return (
-    <div className={`${className} todos-container`}>
-      <div className={`${className} title-addButton`}>
-        <div className="title-container">
-          <h1 className="title">{title}</h1>
-        </div>
-        <button onClick={() => setOpenModal(true)} className="addTodo">
+    <Box className={`${className} todos-container`}>
+      <Box className={`${className} title-addButton`}>
+        <Box className="title-container">
+          <Typography variant="h1" className="title">
+            {title}
+          </Typography>
+        </Box>
+        <Button onClick={() => setOpenModal(true)} className="addTodo">
           + Add new {title} todo{" "}
-        </button>
-      </div>
+        </Button>
+      </Box>
       {data.length !== 0 ? (
         data.map((todo, i) => (
           <TodoDisplay
@@ -89,46 +100,42 @@ const Todos = ({
           />
         ))
       ) : (
-        <p style={{ fontSize: "1.5rem" }}>There is nothing todo in {status}</p>
+        <Typography style={{ fontSize: "1.5rem" }}>
+          There is nothing todo in {status}
+        </Typography>
       )}
       <Dialog open={openModal} onClose={() => setOpenModal(false)}>
-        <div
-          id="modal-background"
-          className={`modal-background-${status}`}
-          style={{ display: "none" }}
-        >
-          <div className="modal-child" onClick={(e) => e.stopPropagation()}>
-            <div className="status-x-button">
-              <div>Create {title} todos</div>
-              <button
-                onClick={() => setOpenModal(false)}
-                id="modal-close-button"
-                className="X-button"
-              >
-                X
-              </button>
-            </div>
-            <form className="info-section" onSubmit={(e) => createSubmit(e)}>
-              <label htmlFor="descrition">Description</label>
-              <TextField
-                id="description-input"
-                className={`description-input-${status}`}
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-              />
-              <label htmlFor="dueDate">Due date: </label>
-              <input
-                type="date"
-                value={newDueDate}
-                onChange={(e) => setNewDueDate(e.target.value)}
-              />
-              {/* <input type="date" value={newDueDate} onChange={e => onChangeSetDate(e)}/> */}
-              <button>submit</button>
-            </form>
-          </div>
-        </div>
+        <Box sx={{ width: "calc(60vw)", position: "relative" }}>
+          <Box>
+            <Typography variant="h4">Create {title} todos</Typography>
+            <IconButton
+              onClick={() => setOpenModal(false)}
+              id="modal-close-button"
+              className="X-button"
+            >
+              FeatherIcon X
+            </IconButton>
+          </Box>
+          <form className="info-section" onSubmit={createSubmit}>
+            <label htmlFor="descrition">Description</label>
+            <TextField
+              id="description-input"
+              className={`description-input-${status}`}
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <label htmlFor="dueDate">Due date: </label>
+            <input
+              type="date"
+              value={newDueDate}
+              onChange={(e) => setNewDueDate(e.target.value)}
+            />
+            {/* <input type="date" value={newDueDate} onChange={e => onChangeSetDate(e)}/> */}
+            <Button type="submit">submit</Button>
+          </form>
+        </Box>
       </Dialog>
-    </div>
+    </Box>
   );
 };
 

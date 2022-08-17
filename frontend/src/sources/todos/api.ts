@@ -1,6 +1,5 @@
-import axios from "axios";
+import axios, { AxiosPromise } from "axios";
 import { Todo, TodoId, TodoPartialUpdate } from "./types";
-import { AxiosPromise } from "axios";
 
 declare global {
   interface Window {
