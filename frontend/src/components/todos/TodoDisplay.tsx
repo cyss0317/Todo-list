@@ -1,26 +1,38 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import * as todoAPIUtil from "sources/todos/api";
+
+import { Todo } from "sources/todos/types";
+// import * as from "sources/todos/api";
+import { useTodoApi } from "sources/todos/hooks";
+
+interface TodoDisplayProps {
+  setProgress: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  setDones: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  setUnDones: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  setData: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+  propTodo: Todo;
+  propTodos: Todo[];
+  id: string;
+  status: string;
+  setTodos: React.Dispatch<React.SetStateAction<Array<Todo>>>;
+}
 
 const TodoDisplay = ({
-  props,
   propTodo,
-  dones,
-  progress,
   propTodos,
-  unDones,
   id,
   status,
-  todos,
   setTodos,
   setDones,
   setUnDones,
   setProgress,
-}) => {
-  const [todo, setTodo] = useState(propTodo);
-  const [tags, setTags] = useState(propTodo.tags);
-  const [tag, setTag] = useState("");
-  const [newDueDate, setNewDueDate] = useState(propTodo.dueDate);
+}: TodoDisplayProps) => {
+  const { updateTodo, deleteTodo } = useTodoApi();
+
+  const [todo, setTodo] = useState<Todo>(propTodo);
+  const [tags, setTags] = useState<Array<string>>(propTodo.tags);
+  const [tag, setTag] = useState<string>("");
+  const [newDueDate, setNewDueDate] = useState<string>(propTodo.dueDate);
   const [numDay, setNumDay] = useState(new Date(propTodo.dueDate).getDay());
   const [day, setDay] = useState(numberToDay(numDay));
   // numberToDay(new Date('2021-12-11').getDay())
@@ -31,7 +43,7 @@ const TodoDisplay = ({
     setDay(numberToDay(numDay));
   }, [newDueDate]);
 
-  function numberToDay(number) {
+  function numberToDay(number: number) {
     switch (number) {
       case 6:
         return "Sun";
@@ -70,7 +82,7 @@ const TodoDisplay = ({
         inProgress: false,
         tags: tags,
       };
-      setTodo((old) => newTodo);
+      setTodo(newTodo);
       setDones((old) => [...old, newTodo]);
     } else if (answer && e.target.value === "In Progress") {
       newTodo = {
@@ -96,10 +108,10 @@ const TodoDisplay = ({
       setTodo((old) => newTodo);
       setUnDones((old) => [...old, newTodo]);
     }
-    todoAPIUtil.updateTodo(newTodo);
+    updateTodo(newTodo);
   };
 
-  const deleteTodo = (e) => {
+  const removeTodo = (e) => {
     e.preventDefault();
     if (todo.tags.length >= 3) {
       const return_value = prompt(
@@ -108,7 +120,7 @@ const TodoDisplay = ({
       if (return_value === "1111") {
         const newTodos = propTodos.filter((todo) => todo._id !== id);
         setTodos((old) => newTodos);
-        todoAPIUtil.deleteTodo(id);
+        deleteTodo(id);
       } else {
         window.alert("password did not match");
       }
@@ -116,25 +128,25 @@ const TodoDisplay = ({
       if (window.confirm("Do you want to delete this Todo?")) {
         const newTodos = propTodos.filter((todo) => todo._id !== id);
         setTodos((old) => newTodos);
-        todoAPIUtil.deleteTodo(id);
+        deleteTodo(id);
       }
     }
   };
 
-  let pastDue = undefined;
+  let pastDue = null;
 
   const dueDateOnChange = (e) => {
     setNewDueDate(e.target.value);
     setNumDay(new Date(e.target.value).getDay());
     changeButton =
-      changeButton === null ? document.getElementById(`${id}`) : changeButton;
+      changeButton === null ? document.getElementById(`${id}`) as HTMLElement : changeButton;
     changeButton.style.display = "block";
   };
 
   const dueDateSubmit = (e) => {
     e.preventDefault();
     let newTodo = {
-      id: id,
+      _id: id,
       description: todo.description,
       dueDate: newDueDate,
       done: todo.done,
@@ -143,7 +155,7 @@ const TodoDisplay = ({
     };
 
     setTodo((old) => newTodo);
-    todoAPIUtil.updateTodo(newTodo);
+    updateTodo(newTodo);
     changeButton.style.display = "none";
   };
 
@@ -161,7 +173,7 @@ const TodoDisplay = ({
         tags: tagsDup,
       };
       setTodo(newTodo);
-      todoAPIUtil.updateTodo(newTodo);
+      updateTodo(newTodo);
     }
     setTag("");
   };
@@ -172,7 +184,7 @@ const TodoDisplay = ({
     const tempTags = [...tags];
     tempTags.splice(tagIndex, 1);
     setTags(tempTags);
-    todoAPIUtil.updateTodo({
+    updateTodo({
       id: id,
       description: todo.description,
       dueDate: todo.dueDate,

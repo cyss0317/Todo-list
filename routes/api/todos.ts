@@ -30,7 +30,7 @@ router.post("/create", (req, res) => {
   newTodo
     .save()
     .then((newTodo) => res.json(newTodo))
-    .catch((err) => alert("create todo request failed"));
+    .catch((err) => alert(`create todo request failed ${err}`));
 });
 
 router.get("/", (req, res) => {

@@ -30,7 +30,7 @@ app.use(
 
 app.use(bodyParser.json());
 
-app.use("/api/todos", todos);
+app.use("/app/todos", todos);
 
 const port = process.env.PORT || 5000;
 
