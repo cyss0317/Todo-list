@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const Todo = require("../../model/todos");
-const validateRegisterTodo = require("../../validation/todo_validation");
-
-router.get("/test", (req, res) => {
-  res.json({ msg: "this is the note route" });
-});
+const Todo = require("./model");
+const validateRegisterTodo = require("../validation/todo_validation");
 
 router.post("/create", (req, res) => {
   const data = req.body;

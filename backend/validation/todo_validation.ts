@@ -1,4 +1,4 @@
-import { Todo } from "../routes/api/types";
+import { Todo } from "../todos/types";
 
 const Validator = require("validator");
 const validText = require("./valid-text");
